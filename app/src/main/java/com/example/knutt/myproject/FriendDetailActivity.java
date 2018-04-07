@@ -1,6 +1,8 @@
 package com.example.knutt.myproject;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +49,17 @@ private ArrayList<String> addID= new ArrayList<>();
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String name = addName.get(i);
                 String id = addID.get(i);
+                SharedPreferences sharedPref = getSharedPreferences("friendname", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("name", name);
+                editor.commit();
+                SharedPreferences sharedPref2 = getSharedPreferences("friendname2", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor2 = sharedPref2.edit();
+                editor2.putString("id", id);
+                editor2.commit();
                 Toast.makeText(getApplicationContext(),name +" "+id,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(FriendDetailActivity.this,FriendTimelineActivity.class);
+                startActivity(intent);
             }
         });
 
