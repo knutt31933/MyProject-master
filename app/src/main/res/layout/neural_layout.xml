@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="350dp"
+    android:layout_height="500dp"
     android:background="@drawable/bgfacebook">
 
 
@@ -24,11 +23,11 @@
 
     <TextView
         android:id="@+id/textneuralatti"
-        android:layout_below="@+id/imageviewneural"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageviewneural"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:text="TextView"
@@ -39,16 +38,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textneuralemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textneuralatti"
         android:layout_alignStart="@+id/textneuralatti"
         android:layout_below="@+id/textneuralatti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
         android:text="TextView"
         android:textColor="#FFFFFF"
@@ -66,9 +64,8 @@
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="44dp"
-        android:layout_toLeftOf="@+id/btncheckneural"
-        android:layout_toStartOf="@+id/btncheckneural"
+        android:layout_alignStart="@+id/textneuralatti"
+        android:layout_marginBottom="21dp"
         android:background="@drawable/butred"
         android:text="No"
         android:textColor="#FFFFFF"

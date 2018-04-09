@@ -73,6 +73,7 @@ public class AccountActivity extends AppCompatActivity
     private Database db;
     private Database2 db2;
     private Database3 db3;
+    private DatabaseCheckin databaseCheckin;
     private DatabaseNotifiWord databaseNotifiWord;
     private ArrayList<String> passValue  = new ArrayList<>();
 
@@ -154,6 +155,8 @@ public class AccountActivity extends AppCompatActivity
         db2.getWritableDatabase();
         db3=new Database3(getApplicationContext());
         db3.getWritableDatabase();
+        databaseCheckin = new DatabaseCheckin(getApplicationContext());
+        databaseCheckin.getWritableDatabase();
 
         databaseRealtime = new DatabaseRealtime(getApplicationContext());
         databaseRealtime.getWritableDatabase();
@@ -2039,9 +2042,9 @@ public class AccountActivity extends AppCompatActivity
 //
 //                            emoneutral.append("-");
 //                        }
-                        final Dialog dialog = new Dialog(AccountActivity.this);
+                        final Dialog dialog = new Dialog(AccountActivity.this,R.style.FullHeightDialog);
                         dialog.setContentView(R.layout.neural_layout);
-                        dialog.setTitle("");
+                        //dialog.setTitle("");
 
 
                         TextView textatti = (TextView) dialog.findViewById(R.id.textneuralatti);
@@ -2188,9 +2191,9 @@ public class AccountActivity extends AppCompatActivity
 //                        if (countnum2 == 0) {
 //                            emonegetive.append("-");
 //                        }
-                        final Dialog dialog = new Dialog(AccountActivity.this);
+                        final Dialog dialog = new Dialog(AccountActivity.this,R.style.FullHeightDialog);
                         dialog.setContentView(R.layout.negetive_layout);
-                        dialog.setTitle("");
+                        //dialog.setTitle("");
 
 
                         TextView textatti = (TextView) dialog.findViewById(R.id.textnegetiveatti);
@@ -2399,9 +2402,9 @@ public class AccountActivity extends AppCompatActivity
 //
 //                                emoneutral.append("-");
 //                            }
-                            final Dialog dialog = new Dialog(AccountActivity.this);
+                            final Dialog dialog = new Dialog(AccountActivity.this,R.style.FullHeightDialog);
                             dialog.setContentView(R.layout.neural_layout);
-                            dialog.setTitle("");
+                            //dialog.setTitle("");
 
 
                             TextView textatti = (TextView) dialog.findViewById(R.id.textneuralatti);
@@ -2545,9 +2548,9 @@ public class AccountActivity extends AppCompatActivity
 //                            if (countnum2 == 0) {
 //                                emonegetive.append("-");
 //                            }
-                            final Dialog dialog = new Dialog(AccountActivity.this);
+                            final Dialog dialog = new Dialog(AccountActivity.this,R.style.FullHeightDialog);
                             dialog.setContentView(R.layout.negetive_layout);
-                            dialog.setTitle("");
+                            //dialog.setTitle("");
 
 
                             TextView textatti = (TextView) dialog.findViewById(R.id.textnegetiveatti);
@@ -2842,9 +2845,9 @@ public class AccountActivity extends AppCompatActivity
 //
 //                            emoneutral.append("-");
 //                        }
-                        final Dialog dialog = new Dialog(AccountActivity.this);
+                        final Dialog dialog = new Dialog(AccountActivity.this,R.style.FullHeightDialog);
                         dialog.setContentView(R.layout.neural_layout);
-                        dialog.setTitle("");
+                        //dialog.setTitle("");
 
 
                         TextView textatti = (TextView) dialog.findViewById(R.id.textneuralatti);
@@ -2989,9 +2992,9 @@ public class AccountActivity extends AppCompatActivity
 //                        if (countnum2 == 0) {
 //                            emonegetive.append("-");
 //                        }
-                        final Dialog dialog = new Dialog(AccountActivity.this);
+                        final Dialog dialog = new Dialog(AccountActivity.this,R.style.FullHeightDialog);
                         dialog.setContentView(R.layout.negetive_layout);
-                        dialog.setTitle("");
+                        //dialog.setTitle("");
 
 
                         TextView textatti = (TextView) dialog.findViewById(R.id.textnegetiveatti);
@@ -3135,9 +3138,9 @@ public class AccountActivity extends AppCompatActivity
 //                            emopositive.append("-");
 //
 //                        }
-                        final Dialog dialog = new Dialog(AccountActivity.this);
+                        final Dialog dialog = new Dialog(AccountActivity.this,R.style.FullHeightDialog);
                         dialog.setContentView(R.layout.positive_layout);
-                        dialog.setTitle("");
+                        //dialog.setTitle("");
 
 
                         TextView textatti = (TextView) dialog.findViewById(R.id.textpositiveatti);
@@ -3286,9 +3289,9 @@ public class AccountActivity extends AppCompatActivity
 //
 //                                emoneutral.append("-");
 //                            }
-                            final Dialog dialog = new Dialog(AccountActivity.this);
+                            final Dialog dialog = new Dialog(AccountActivity.this,R.style.FullHeightDialog);
                             dialog.setContentView(R.layout.neural_layout);
-                            dialog.setTitle("");
+                            //dialog.setTitle("");
 
 
                             TextView textatti = (TextView) dialog.findViewById(R.id.textneuralatti);
@@ -3432,9 +3435,9 @@ public class AccountActivity extends AppCompatActivity
 //                            if (countnum2 == 0) {
 //                                emonegetive.append("-");
 //                            }
-                            final Dialog dialog = new Dialog(AccountActivity.this);
+                            final Dialog dialog = new Dialog(AccountActivity.this,R.style.FullHeightDialog);
                             dialog.setContentView(R.layout.negetive_layout);
-                            dialog.setTitle("");
+                            //dialog.setTitle("");
 
 
                             TextView textatti = (TextView) dialog.findViewById(R.id.textnegetiveatti);
@@ -3588,9 +3591,9 @@ public class AccountActivity extends AppCompatActivity
 //                                emopositive.append("-");
 //
 //                            }
-                            final Dialog dialog = new Dialog(AccountActivity.this);
+                            final Dialog dialog = new Dialog(AccountActivity.this,R.style.FullHeightDialog);
                             dialog.setContentView(R.layout.positive_layout);
-                            dialog.setTitle("");
+                            //dialog.setTitle("");
 
                             TextView textatti = (TextView) dialog.findViewById(R.id.textpositiveatti);
                             TextView textemo = (TextView) dialog.findViewById(R.id.textpositiveemo);

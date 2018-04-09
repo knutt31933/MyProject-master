@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".AccountActivity"
-            android:label="@string/title_activity_account"
+            android:label="Postsitive"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data

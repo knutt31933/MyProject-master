@@ -40,6 +40,7 @@ public class SummaryActivity extends AppCompatActivity {
     private Database db;
     private Database2 db2;
     private Database3 db3;
+    private DatabaseCheckin databaseCheckin;
     private databaserealtimeSetting1 databaserealtimeSetting1;
 
 
@@ -54,6 +55,8 @@ public class SummaryActivity extends AppCompatActivity {
         databaseRealtime = new DatabaseRealtime(getApplicationContext());
         db2 = new Database2(getApplicationContext());
         db3 = new Database3(getApplicationContext());
+        databaseCheckin = new DatabaseCheckin(getApplicationContext());
+
 
         
         setPiechart();
@@ -70,6 +73,7 @@ public class SummaryActivity extends AppCompatActivity {
         final ArrayList<HashMap<String, String>> emoshortcut = db.getEmoticon();
         final ArrayList<HashMap<String, String>> attitude2 = db2.getAttitudeList2();
         final ArrayList<HashMap<String, String>> attitude3 = db3.getAttitudeList3();
+        final ArrayList<HashMap<String, String>> storyTimeline =  databaseCheckin.getCheckinWord();
 
         final String pattern2 = "([a-zA-Z0-9!@#$&()-`|.+',/\"]{2})";
         final String pattern3 = "([a-zA-Z0-9!@#$&()-`|.+',/\"]{3})";
@@ -91,7 +95,7 @@ public class SummaryActivity extends AppCompatActivity {
         String datecurrent = realdatecurrent.format(check.getTime());
 
         SharedPreferences spradio = getSharedPreferences("App save radio", Context.MODE_PRIVATE);
-        int checkboxRadio = spradio.getInt("checkedRadio",0);
+
 
         databaserealtimeSetting1 = new databaserealtimeSetting1(getApplicationContext());
         databaserealtimeSetting1.getWritableDatabase();
@@ -155,494 +159,6 @@ public class SummaryActivity extends AppCompatActivity {
 
         final Pattern regex = Pattern.compile(pattern);
 
-
-
-   if(checkboxRadio == 1){
-
-       if (!(datecurrent.contains(datechecksetting12))) {
-
-           GraphRequest request = new GraphRequest(
-                   AccessToken.getCurrentAccessToken(),
-                   "/me/feed?limit=500",
-                   null,
-                   HttpMethod.GET,
-                   new GraphRequest.Callback() {
-                       public void onCompleted(GraphResponse response) {
-
-                           // JSON GETS THE DATA
-                           JSONObject jsonData = response.getJSONObject();
-
-                           try {
-
-                               JSONArray postsData = jsonData.getJSONArray("data");
-                               if (postsData != null) {
-
-                                   int countgrappos = 0;
-                                   int countgrapnege = 0;
-                                   int countgraphneural = 0;
-                                   int countgraphnot = 0;
-
-                                   for (int i = 0; i < postsData.length(); i++) {
-
-                                       strword.clear();
-                                       emo.clear();
-                                       listemo.clear();
-
-
-                                       int countchexkemo = 0;
-                                       int count = 0;
-                                       int checkifemo = 0;
-                                       int checkifword = 0;
-
-                                       JSONObject story = postsData.getJSONObject(i);
-
-//
-                                       if (story.has("created_time")) {
-                                           String timeMessage = story.getString("created_time");
-                                           //allPostsMessages.add(timeMessage);
-                                           Matcher m = regex.matcher(timeMessage);
-                                           if (m.find()) {
-                                               //allPostsMessages.add(m.group(0));
-
-                                               if (m.group(0).contains(datechecksetting11)) {
-                                                   if (story.has("message")) {
-
-                                                       String postMessage = story.getString("message");
-                                                       Matcher m22 = regex2.matcher(postMessage);
-                                                       Matcher m33 = regex3.matcher(postMessage);
-                                                       Matcher m44 = regex4.matcher(postMessage);
-
-                                                       while (m22.find()) {
-                                                           listemo.add(m22.group(0));
-                                                       }
-
-                                                       while (m33.find()) {
-                                                           listemo.add(m33.group(0));
-
-                                                       }
-
-                                                       while (m44.find()) {
-                                                           listemo.add(m44.group(0));
-
-                                                       }
-
-                                                       //check word
-                                                       Locale thaiLocale = new Locale("th");
-
-
-                                                       BreakIterator boundary = BreakIterator.getWordInstance(thaiLocale);
-
-                                                       boundary.setText(postMessage);
-
-
-                                                       int start = boundary.first();
-                                                       for (int end = boundary.next(); end != BreakIterator.DONE; start = end, end = boundary.next()) {
-
-                                                           strword.add(postMessage.substring(start, end));
-
-
-                                                       }
-
-                                                       for (String s : listemo) {
-                                                           for (int k = 0; k < emoshortcut.size(); k++) {
-                                                               if (s.equals(emoshortcut.get(k).get("EmoticonShortcut"))) {
-                                                                   String rank = emoshortcut.get(k).get("EmoticonRank");
-                                                                   int countrank = Integer.parseInt(rank);
-                                                                   countchexkemo = countchexkemo + countrank;
-                                                                   checkifemo++;
-                                                               }
-                                                           }
-
-                                                       }
-
-                                                       for (int h = 0; h < strword.size(); h++) {
-                                                           String str = strword.get(h);
-
-
-                                                           // Toast.makeText(MainActivity.this,str,Toast.LENGTH_LONG).show();
-                                                           for (int j = 0; j < attitude.size(); j++) {
-                                                               if (str.equals(attitude.get(j).get("AttitudeWord"))) {
-
-                                                                   String rank = attitude.get(j).get("AttitudeRank");
-                                                                   int countrank = Integer.parseInt(rank);
-
-                                                                   count = count + countrank;
-                                                                   checkifword++;
-
-
-                                                               }
-                                                           }
-
-
-                                                           for (int j = 0; j < attitude2.size(); j++) {
-                                                               if (str.equals(attitude2.get(j).get("AttitudeWord"))) {
-                                                                   String rank = attitude2.get(j).get("AttitudeRank");
-                                                                   int countrank = Integer.parseInt(rank);
-
-
-                                                                   count = count + countrank;
-                                                                   checkifword++;
-
-
-                                                               }
-                                                           }
-
-                                                           for (int j = 0; j < attitude3.size(); j++) {
-                                                               if (str.equals(attitude3.get(j).get("AttitudeWord"))) {
-                                                                   String rank = attitude3.get(j).get("AttitudeRank");
-                                                                   int countrank = Integer.parseInt(rank);
-
-
-                                                                   count = count + countrank;
-                                                                   checkifword++;
-
-
-                                                               }
-                                                           }
-
-
-                                                       }
-
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
-
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
-
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
-                                                           }
-                                                       }
-
-
-                                                   }
-
-                                               }
-                                           }
-
-                                       }
-
-
-                                   }
-
-
-                                   Toast.makeText(SummaryActivity.this, "บวก" + String.valueOf(countgrappos) + "ลบ" + String.valueOf(countgrapnege), Toast.LENGTH_SHORT).show();
-                                   int countAttitude[] = {countgrappos, countgrapnege, countgraphneural, countgraphnot};
-                                   String nameAttitude[] = {"ทัศนคติเชิงบวก", "ทัศนคติเชิงลบ", "ทัศนคติเป็นกลาง", "ไม่แสดงออกถึงทัศนคติเลย"};
-
-
-                                   List<PieEntry> pieEntries = new ArrayList<>();
-                                   for (int i = 0; i < countAttitude.length; i++) {
-                                       pieEntries.add(new PieEntry(countAttitude[i], nameAttitude[i]));
-
-                                   }
-                                   PieDataSet pieDataSet = new PieDataSet(pieEntries, " ");
-                                   ArrayList<Integer> colors = new ArrayList<>();
-                                   colors.add(Color.GREEN);
-                                   colors.add(Color.RED);
-                                   colors.add(Color.YELLOW);
-                                   colors.add(Color.MAGENTA);
-                                   pieDataSet.setColors(colors);
-                                   PieData pieData = new PieData(pieDataSet);
-
-
-                                   PieChart pieChart = (PieChart) findViewById(R.id.chart);
-
-
-                                   pieChart.setData(pieData);
-                                   pieChart.setHoleRadius(25f);
-                                   pieChart.setTransparentCircleAlpha(0);
-                                   pieChart.animateY(1000);
-                                   pieChart.invalidate();
-
-                               }
-
-
-                           } catch (Exception e) {
-                               Log.d("JSON", "error" + e.toString());
-                           }
-
-                       }
-                   }
-           );
-           Bundle parameters = new Bundle();
-           parameters.putString("fields", "created_time,message");
-           request.setParameters(parameters);
-           request.executeAsync();
-
-       } else {
-
-
-           Calendar c = Calendar.getInstance();
-           Calendar c2 = Calendar.getInstance();
-
-
-           c.add(Calendar.DATE, 0);
-           c2.add(Calendar.DATE, +1);
-
-
-
-           df = new SimpleDateFormat("yyyy-MM-dd");
-           df2 = new SimpleDateFormat("yyyy-MM-dd");
-
-
-           formattedDate = df.format(c.getTime());
-           formattedDate2 = df2.format(c2.getTime());
-
-
-
-           Date1 = databaserealtimeSetting1.updateDataSetting1("1",formattedDate);
-           Date2 = databaserealtimeSetting1.updateDataSetting1("2",formattedDate2);
-
-
-           final String datecheck11 = datetimesetting1.get(0).get("Date");
-           final String datecheck22 = datetimesetting1.get(1).get("Date");
-
-
-           GraphRequest request = new GraphRequest(
-                   AccessToken.getCurrentAccessToken(),
-                   "/me/feed?limit=500",
-                   null,
-                   HttpMethod.GET,
-                   new GraphRequest.Callback() {
-                       public void onCompleted(GraphResponse response) {
-
-                           // JSON GETS THE DATA
-                           JSONObject jsonData = response.getJSONObject();
-
-                           try {
-
-                               JSONArray postsData = jsonData.getJSONArray("data");
-                               if (postsData != null) {
-
-                                   int countgrappos = 0;
-                                   int countgrapnege = 0;
-                                   int countgraphneural = 0;
-                                   int countgraphnot = 0;
-
-                                   for (int i = 0; i < postsData.length(); i++) {
-                                       strword.clear();
-                                       emo.clear();
-                                       listemo.clear();
-
-
-                                       int countchexkemo = 0;
-                                       int count = 0;
-                                       int checkifemo = 0;
-                                       int checkifword = 0;
-
-                                       JSONObject story = postsData.getJSONObject(i);
-
-                                       if (story.has("created_time")) {
-                                           String timeMessage = story.getString("created_time");
-                                           //allPostsMessages.add(timeMessage);
-                                           Matcher m = regex.matcher(timeMessage);
-                                           if (m.find()) {
-                                               //allPostsMessages.add(m.group(0));
-
-                                               if (m.group(0).contains(datecheck11)) {
-                                                   if (story.has("message")) {
-
-                                                       String postMessage = story.getString("message");
-                                                       Matcher m22 = regex2.matcher(postMessage);
-                                                       Matcher m33 = regex3.matcher(postMessage);
-                                                       Matcher m44 = regex4.matcher(postMessage);
-
-                                                       while (m22.find()) {
-                                                           listemo.add(m22.group(0));
-                                                       }
-
-                                                       while (m33.find()) {
-                                                           listemo.add(m33.group(0));
-
-                                                       }
-
-                                                       while (m44.find()) {
-                                                           listemo.add(m44.group(0));
-
-                                                       }
-
-                                                       //check word
-                                                       Locale thaiLocale = new Locale("th");
-
-
-                                                       BreakIterator boundary = BreakIterator.getWordInstance(thaiLocale);
-
-                                                       boundary.setText(postMessage);
-
-
-                                                       int start = boundary.first();
-                                                       for (int end = boundary.next(); end != BreakIterator.DONE; start = end, end = boundary.next()) {
-
-                                                           strword.add(postMessage.substring(start, end));
-
-
-                                                       }
-
-                                                       for (String s : listemo) {
-                                                           for (int k = 0; k < emoshortcut.size(); k++) {
-                                                               if (s.equals(emoshortcut.get(k).get("EmoticonShortcut"))) {
-                                                                   String rank = emoshortcut.get(k).get("EmoticonRank");
-                                                                   int countrank = Integer.parseInt(rank);
-                                                                   countchexkemo = countchexkemo + countrank;
-                                                                   checkifemo++;
-                                                               }
-                                                           }
-
-                                                       }
-
-                                                       for (int h = 0; h < strword.size(); h++) {
-                                                           String str = strword.get(h);
-
-
-                                                           // Toast.makeText(MainActivity.this,str,Toast.LENGTH_LONG).show();
-                                                           for (int j = 0; j < attitude.size(); j++) {
-                                                               if (str.equals(attitude.get(j).get("AttitudeWord"))) {
-
-                                                                   String rank = attitude.get(j).get("AttitudeRank");
-                                                                   int countrank = Integer.parseInt(rank);
-
-                                                                   count = count + countrank;
-                                                                   checkifword++;
-
-
-                                                               }
-                                                           }
-
-
-                                                           for (int j = 0; j < attitude2.size(); j++) {
-                                                               if (str.equals(attitude2.get(j).get("AttitudeWord"))) {
-                                                                   String rank = attitude2.get(j).get("AttitudeRank");
-                                                                   int countrank = Integer.parseInt(rank);
-
-
-                                                                   count = count + countrank;
-                                                                   checkifword++;
-
-
-                                                               }
-                                                           }
-
-                                                           for (int j = 0; j < attitude3.size(); j++) {
-                                                               if (str.equals(attitude3.get(j).get("AttitudeWord"))) {
-                                                                   String rank = attitude3.get(j).get("AttitudeRank");
-                                                                   int countrank = Integer.parseInt(rank);
-
-
-                                                                   count = count + countrank;
-                                                                   checkifword++;
-
-
-                                                               }
-                                                           }
-
-
-                                                       }
-
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
-
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
-
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
-                                                           }
-                                                       }
-
-
-                                                   }
-
-                                               }
-                                           }
-                                           //Toast.makeText(TimelineActivity.this,timeMessage,Toast.LENGTH_SHORT).show();
-                                       }
-
-
-                                   }
-
-
-                                   //Toast.makeText(TimelineActivity.this,allPostsMessages.size(),Toast.LENGTH_SHORT).show();
-
-//                                for(int i = 0;i<allPostsMessages.size();i++){
-//
-//                                }
-                                   Toast.makeText(SummaryActivity.this, String.valueOf(countgrappos), Toast.LENGTH_SHORT).show();
-                                   SharedPreferences sp = getSharedPreferences("save1", Context.MODE_PRIVATE);
-                                   int save1 = sp.getInt("show1", countgrappos);
-                                   SharedPreferences sp2 = getSharedPreferences("save2", Context.MODE_PRIVATE);
-                                   int save2 = sp2.getInt("show2", countgrapnege);
-                                   SharedPreferences sp3 = getSharedPreferences("save3", Context.MODE_PRIVATE);
-                                   int save3 = sp3.getInt("show3", countgraphneural);
-                                   SharedPreferences sp4 = getSharedPreferences("save4", Context.MODE_PRIVATE);
-                                   int save4 = sp4.getInt("show4", countgraphnot);
-
-
-                                   int countAttitude[] = {countgrappos, countgrapnege, countgraphneural, countgraphnot};
-                                   String nameAttitude[] = {"ทัศนคติเชิงบวก", "ทัศนคติเชิงลบ", "ทัศนคติเป็นกลาง", "ไม่แสดงออกถึงทัศนคติเลย"};
-
-
-                                   List<PieEntry> pieEntries = new ArrayList<>();
-                                   for (int i = 0; i < countAttitude.length; i++) {
-                                       pieEntries.add(new PieEntry(countAttitude[i], nameAttitude[i]));
-
-                                   }
-                                   PieDataSet pieDataSet = new PieDataSet(pieEntries, " ");
-                                   ArrayList<Integer> colors = new ArrayList<>();
-                                   colors.add(Color.GREEN);
-                                   colors.add(Color.RED);
-                                   colors.add(Color.YELLOW);
-                                   colors.add(Color.MAGENTA);
-                                   pieDataSet.setColors(colors);
-                                   PieData pieData = new PieData(pieDataSet);
-
-
-                                   PieChart pieChart = (PieChart) findViewById(R.id.chart);
-
-
-                                   pieChart.setData(pieData);
-                                   pieChart.setHoleRadius(25f);
-                                   pieChart.setTransparentCircleAlpha(0);
-                                   pieChart.animateY(1000);
-                                   pieChart.invalidate();
-
-                               }
-
-
-                           } catch (Exception e) {
-                               Log.d("JSON", "error" + e.toString());
-                           }
-
-                       }
-                   }
-           );
-           Bundle parameters = new Bundle();
-           parameters.putString("fields", "created_time,message");
-           request.setParameters(parameters);
-           request.executeAsync();
-
-
-       }
-
-   }else {
 
 
        if (!(datecurrent.contains(datecheck8))) {
@@ -984,28 +500,52 @@ public class SummaryActivity extends AppCompatActivity {
 
                                                        }
 
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+                                                   }
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
 
                                                    }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
+                                                   }
+
+
+
+
 
                                                } else if (m.group(0).contains(datecheck2)) {
 
@@ -1296,27 +836,49 @@ public class SummaryActivity extends AppCompatActivity {
 
 
                                                        }
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+
+                                                   }
+
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
 
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
 
@@ -1610,26 +1172,47 @@ public class SummaryActivity extends AppCompatActivity {
 
                                                        }
 
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+                                                   }
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
+
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
                                                } else if (m.group(0).contains(datecheck4)) {
@@ -1921,27 +1504,49 @@ public class SummaryActivity extends AppCompatActivity {
 
 
                                                        }
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+
+                                                   }
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
 
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
 
@@ -2234,27 +1839,48 @@ public class SummaryActivity extends AppCompatActivity {
 
 
                                                        }
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+
+                                                   }
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
 
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
 
@@ -2548,27 +2174,50 @@ public class SummaryActivity extends AppCompatActivity {
 
                                                        }
 
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+
+                                                   }
+
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
 
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
 
@@ -2863,26 +2512,47 @@ public class SummaryActivity extends AppCompatActivity {
                                                        }
 
 
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+                                                   }
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
+
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
 
@@ -2907,10 +2577,10 @@ public class SummaryActivity extends AppCompatActivity {
                                    }
                                    PieDataSet pieDataSet = new PieDataSet(pieEntries, " ");
                                    ArrayList<Integer> colors = new ArrayList<>();
-                                   colors.add(Color.GREEN);
-                                   colors.add(Color.RED);
-                                   colors.add(Color.YELLOW);
-                                   colors.add(Color.GRAY);
+                                   colors.add(Color.rgb(0, 143, 0));
+                                   colors.add(Color.rgb(200, 0, 0));
+                                   colors.add(Color.rgb(255, 192, 0));
+                                   colors.add(Color.rgb(127,127,127));
                                    pieDataSet.setColors(colors);
                                    PieData pieData = new PieData(pieDataSet);
 
@@ -2935,7 +2605,7 @@ public class SummaryActivity extends AppCompatActivity {
                    }
            );
            Bundle parameters = new Bundle();
-           parameters.putString("fields", "created_time,message");
+           parameters.putString("fields", "created_time,message,story");
            request.setParameters(parameters);
            request.executeAsync();
 
@@ -3327,27 +2997,49 @@ public class SummaryActivity extends AppCompatActivity {
 
                                                        }
 
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+
+                                                   }
+
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
 
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
                                                } else if (m.group(0).contains(datecheck22)) {
@@ -3639,24 +3331,45 @@ public class SummaryActivity extends AppCompatActivity {
 
                                                        }
 
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
+
+                                                   }
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
+                                                           }
+
+                                                       }
+
+
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
                                                            countgrappos++;
-
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       } else if (checkifword > 0 && count == 0) {
                                                            countgraphneural++;
-
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       } else if (checkifword > 0 && count < 0) {
                                                            countgrapnege++;
                                                        } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
-                                                           }
+                                                           countgraphnot++;
                                                        }
                                                    }
 
@@ -3951,27 +3664,49 @@ public class SummaryActivity extends AppCompatActivity {
 
                                                        }
 
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+
+                                                   }
+
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
 
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
                                                } else if (m.group(0).contains(datecheck44)) {
@@ -4264,26 +3999,48 @@ public class SummaryActivity extends AppCompatActivity {
 
                                                        }
 
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+                                                   }
+
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
+
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
 
@@ -4577,26 +4334,48 @@ public class SummaryActivity extends AppCompatActivity {
 
                                                        }
 
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+                                                   }
+
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
+
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
 
@@ -4889,28 +4668,50 @@ public class SummaryActivity extends AppCompatActivity {
 
 
                                                        }
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+
+                                                   }
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
 
                                                    }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
+                                                   }
+
 
 
                                                } else if (m.group(0).contains(datecheck77)) {
@@ -5202,26 +5003,47 @@ public class SummaryActivity extends AppCompatActivity {
 
 
                                                        }
-                                                       if (checkifemo > 0 && countchexkemo > 0) {
-                                                           countgrappos++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                           countgraphneural++;
 
-                                                       } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                           countgrapnege++;
-                                                       } else {
-                                                           if (checkifword > 0 && count > 0) {
-                                                               countgrappos++;
-                                                           } else if (checkifword > 0 && count == 0) {
-                                                               countgraphneural++;
-                                                           } else if (checkifword > 0 && count < 0) {
-                                                               countgrapnege++;
-                                                           } else {
-                                                               countgraphnot++;
+                                                   }
+                                                   if(story.has("story")){
+                                                       String PostStory = story.getString("story");
+                                                       for(int n = 0;n<storyTimeline.size();n++){
+
+                                                           String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                           Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                           Matcher mcheck = regexcheck.matcher(PostStory);
+                                                           String rank = storyTimeline.get(n).get("CheckinRank");
+                                                           int countrank = Integer.parseInt(rank);
+
+                                                           if (mcheck.find()){
+                                                               count = count+countrank;
+                                                               checkifword++;
                                                            }
+
                                                        }
 
+
+                                                   }
+
+                                                   if (checkifemo > 0 && countchexkemo > 0) {
+                                                       countgrappos++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                       countgraphneural++;
+
+                                                   } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                       countgrapnege++;
+                                                   } else {
+                                                       if (checkifword > 0 && count > 0) {
+                                                           countgrappos++;
+                                                       } else if (checkifword > 0 && count == 0) {
+                                                           countgraphneural++;
+                                                       } else if (checkifword > 0 && count < 0) {
+                                                           countgrapnege++;
+                                                       } else {
+                                                           countgraphnot++;
+                                                       }
                                                    }
 
 
@@ -5261,10 +5083,10 @@ public class SummaryActivity extends AppCompatActivity {
                                    }
                                    PieDataSet pieDataSet = new PieDataSet(pieEntries, " ");
                                    ArrayList<Integer> colors = new ArrayList<>();
-                                   colors.add(Color.GREEN);
-                                   colors.add(Color.RED);
-                                   colors.add(Color.YELLOW);
-                                   colors.add(Color.GRAY);
+                                   colors.add(Color.rgb(0, 143, 0));
+                                   colors.add(Color.rgb(200, 0, 0));
+                                   colors.add(Color.rgb(255, 192, 0));
+                                   colors.add(Color.rgb(127,127,127));
                                    pieDataSet.setColors(colors);
                                    PieData pieData = new PieData(pieDataSet);
 
@@ -5289,13 +5111,13 @@ public class SummaryActivity extends AppCompatActivity {
                    }
            );
            Bundle parameters = new Bundle();
-           parameters.putString("fields", "created_time,message");
+           parameters.putString("fields", "created_time,message,story");
            request.setParameters(parameters);
            request.executeAsync();
 
 
        }
-   }
+
         //////////////////
 
     }

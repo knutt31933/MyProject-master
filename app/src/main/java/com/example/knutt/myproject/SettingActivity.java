@@ -22,8 +22,11 @@ public class SettingActivity extends AppCompatActivity {
     private CheckBox checkBox2;
     private CheckBox checkBox3;
     private CheckBox checkBox4;
-    private CheckBox checkBox5;
+
     private CheckBox checkBox6;
+    private CheckBox checkBox7;
+    private CheckBox checkBox8;
+    private CheckBox checkBox9;
     private HashSet<String> map = new HashSet<>();
     int countcheck = 0;
     private RadioGroup radioGroup;
@@ -42,9 +45,11 @@ public class SettingActivity extends AppCompatActivity {
         checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
         checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
         checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
-        checkBox5 = (CheckBox) findViewById(R.id.checkBox5);
-        checkBox6 = (CheckBox) findViewById(R.id.checkBox6);
 
+        checkBox6 = (CheckBox) findViewById(R.id.checkBox6);
+        checkBox7 = (CheckBox) findViewById(R.id.checkBox7);
+        checkBox8 = (CheckBox) findViewById(R.id.checkBox8);
+        checkBox9 = (CheckBox) findViewById(R.id.checkBox9);
 
 
         final Intent intent = getIntent();
@@ -60,10 +65,15 @@ public class SettingActivity extends AppCompatActivity {
         int checkboxstate3 = sp3.getInt("checked3",0);
         SharedPreferences sp4 = getSharedPreferences("App save4", Context.MODE_PRIVATE);
         int checkboxstate4 = sp4.getInt("checked4",0);
-        SharedPreferences sp5 = getSharedPreferences("App save5", Context.MODE_PRIVATE);
-        int checkboxstate5 = sp5.getInt("checked5",0);
+
         SharedPreferences sp6 = getSharedPreferences("App save6", Context.MODE_PRIVATE);
         int checkboxstate6 = sp6.getInt("checked6",0);
+        SharedPreferences sp7 = getSharedPreferences("App save7", Context.MODE_PRIVATE);
+        int checkboxstate7 = sp7.getInt("checked7",0);
+        SharedPreferences sp8 = getSharedPreferences("App save8", Context.MODE_PRIVATE);
+        int checkboxstate8 = sp8.getInt("checked8",0);
+        SharedPreferences sp9 = getSharedPreferences("App save9", Context.MODE_PRIVATE);
+        int checkboxstate9 = sp9.getInt("checked9",0);
 
 
 
@@ -89,15 +99,26 @@ public class SettingActivity extends AppCompatActivity {
         }else {
             checkBox4.setChecked(false);
         }
-        if (checkboxstate5 == 1) {
-            checkBox5.setChecked(true);
-        }else {
-            checkBox5.setChecked(false);
-        }
+
         if (checkboxstate6 == 1) {
             checkBox6.setChecked(true);
         }else {
             checkBox6.setChecked(false);
+        }
+        if (checkboxstate7 == 1) {
+            checkBox7.setChecked(true);
+        }else {
+            checkBox7.setChecked(false);
+        }
+        if (checkboxstate8 == 1) {
+            checkBox8.setChecked(true);
+        }else {
+            checkBox8.setChecked(false);
+        }
+        if (checkboxstate9 == 1) {
+            checkBox9.setChecked(true);
+        }else {
+            checkBox9.setChecked(false);
         }
 
         SharedPreferences spradio = getSharedPreferences("App save radio", Context.MODE_PRIVATE);
@@ -163,10 +184,6 @@ public class SettingActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
 
 
 
@@ -238,22 +255,7 @@ public class SettingActivity extends AppCompatActivity {
 
             }
         }
-        if(view.getId() == R.id.checkBox5){
-            if (checked) {
-                SharedPreferences sharedPref = getSharedPreferences("App save5", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putInt("checked5", 1);
-                editor.commit();
 
-                Toast.makeText(SettingActivity.this, "5", Toast.LENGTH_SHORT).show();
-            }else{
-                SharedPreferences sharedPref = getSharedPreferences("App save5", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putInt("checked5", 0);
-                editor.commit();
-
-            }
-        }
         if(view.getId() == R.id.checkBox6){
             if (checked) {
                 SharedPreferences sharedPref = getSharedPreferences("App save6", Context.MODE_PRIVATE);
@@ -265,6 +267,54 @@ public class SettingActivity extends AppCompatActivity {
                 SharedPreferences sharedPref = getSharedPreferences("App save6", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt("checked6", 0);
+                editor.commit();
+
+            }
+        }
+        if (view.getId() == R.id.checkBox7) {
+            if (checked) {
+
+
+                SharedPreferences sharedPref = getSharedPreferences("App save7", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("checked7", 1);
+                editor.commit();
+                Toast.makeText(SettingActivity.this, "1", Toast.LENGTH_SHORT).show();
+            }else{
+
+                SharedPreferences sharedPref = getSharedPreferences("App save7", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("checked7", 0);
+                editor.commit();
+
+
+            }
+        }
+        if(view.getId() == R.id.checkBox8){
+            if (checked) {
+                SharedPreferences sharedPref = getSharedPreferences("App save8", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("checked8", 1);
+                editor.commit();
+                Toast.makeText(SettingActivity.this, "2", Toast.LENGTH_SHORT).show();
+            }else{
+                SharedPreferences sharedPref = getSharedPreferences("App save8", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("checked8", 0);
+                editor.commit();
+            }
+        }
+        if(view.getId() == R.id.checkBox9){
+            if (checked) {
+                SharedPreferences sharedPref = getSharedPreferences("App save9", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("checked9", 1);
+                editor.commit();
+                Toast.makeText(SettingActivity.this, "3", Toast.LENGTH_SHORT).show();
+            }else{
+                SharedPreferences sharedPref = getSharedPreferences("App save9", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("checked9", 0);
                 editor.commit();
 
             }

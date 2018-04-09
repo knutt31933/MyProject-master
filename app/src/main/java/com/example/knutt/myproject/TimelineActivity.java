@@ -56,6 +56,7 @@ public class TimelineActivity extends AppCompatActivity {
     private Database db;
     private Database2 db2;
     private Database3 db3;
+    private DatabaseCheckin databaseCheckin ;
     ArrayList<String> strword = new ArrayList<>() ;
     HashSet<String> emo = new HashSet<>();
     private ArrayList<String> listemo = new ArrayList<>();
@@ -89,6 +90,9 @@ public class TimelineActivity extends AppCompatActivity {
 
         databaserealtimeSetting1 = new databaserealtimeSetting1(getApplicationContext());
         databaserealtimeSetting1.getWritableDatabase();
+
+        databaseCheckin = new DatabaseCheckin(getApplicationContext());
+        databaseCheckin.getWritableDatabase();
 
         SharedPreferences sp = getSharedPreferences("App save", Context.MODE_PRIVATE);
         final int checkboxstate = sp.getInt("checked",1);
@@ -400,10 +404,16 @@ public class TimelineActivity extends AppCompatActivity {
                                 JSONArray postsData = jsonData.getJSONArray("data");
                                 if (postsData != null) {
 
+                                    ArrayList<HashMap<String,String>> storyTimeline = databaseCheckin.getCheckinWord();
+
                                     for (int i = 0; i < postsData.length(); i++) {
                                         strword.clear();
                                         emo.clear();
                                         listemo.clear();
+
+                                        String KeepStory = "";
+                                        String keepMessage = "";
+
 
                                         int countchexkemo = 0;
                                         int count = 0;
@@ -421,6 +431,7 @@ public class TimelineActivity extends AppCompatActivity {
 //                                        //Toast.makeText(TimelineActivity.this,postMessage,Toast.LENGTH_SHORT).show();
 //                                    }
                                         if (story.has("created_time")) {
+
                                             String timeMessage = story.getString("created_time");
                                             //allPostsMessages.add(timeMessage);
                                             Matcher m = regex.matcher(timeMessage);
@@ -716,33 +727,63 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                       keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            }
-                                                        }
-
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+//                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage+"\n"+"เรื่องราว : "+MessagePost);
 
                                                     }
+
+                                                        if(story.has("story")){
+                                                            String PostStory = story.getString("story");
+                                                            for(int n = 0;n<storyTimeline.size();n++){
+
+                                                                String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                                Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                                Matcher mcheck = regexcheck.matcher(PostStory);
+                                                                String rank = storyTimeline.get(n).get("CheckinRank");
+                                                                int countrank = Integer.parseInt(rank);
+
+                                                                if (mcheck.find()){
+                                                                    count = count+countrank;
+                                                                    checkifword++;
+                                                                }
+
+                                                            }
+
+
+                                                            KeepStory = PostStory;
+
+
+                                                        }
+
+
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
                                                 } else if (m.group(0).contains(datecheck2)) {
 
@@ -1033,34 +1074,61 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            }
-                                                        }
-
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
                                                     }
 
+                                                        if(story.has("story")){
+                                                            String PostStory = story.getString("story");
+                                                            for(int n = 0;n<storyTimeline.size();n++){
+
+                                                                String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                                Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                                Matcher mcheck = regexcheck.matcher(PostStory);
+                                                                String rank = storyTimeline.get(n).get("CheckinRank");
+                                                                int countrank = Integer.parseInt(rank);
+
+                                                                if (mcheck.find()){
+                                                                    count = count+countrank;
+                                                                    checkifword++;
+                                                                }
+
+                                                            }
+
+
+                                                            KeepStory = PostStory;
+
+
+
+
+
+                                                    }
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
                                                 } else if (m.group(0).contains(datecheck3)) {
 
@@ -1351,33 +1419,59 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
+                                                    }
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        if(story.has("story")){
+                                                            String PostStory = story.getString("story");
+                                                            for(int n = 0;n<storyTimeline.size();n++){
 
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                                String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                                Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                                Matcher mcheck = regexcheck.matcher(PostStory);
+                                                                String rank = storyTimeline.get(n).get("CheckinRank");
+                                                                int countrank = Integer.parseInt(rank);
 
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                                if (mcheck.find()){
+                                                                    count = count+countrank;
+                                                                    checkifword++;
+                                                                }
 
                                                             }
+
+
+                                                            KeepStory = PostStory;
+
+
                                                         }
 
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
                                                     }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
 
                                                 } else if (m.group(0).contains(datecheck4)) {
 
@@ -1668,33 +1762,58 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
+                                                    }
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        if(story.has("story")){
+                                                            String PostStory = story.getString("story");
+                                                            for(int n = 0;n<storyTimeline.size();n++){
 
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                                String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                                Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                                Matcher mcheck = regexcheck.matcher(PostStory);
+                                                                String rank = storyTimeline.get(n).get("CheckinRank");
+                                                                int countrank = Integer.parseInt(rank);
 
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                                if (mcheck.find()){
+                                                                    count = count+countrank;
+                                                                    checkifword++;
+                                                                }
 
                                                             }
+
+
+                                                            KeepStory = PostStory;
+
+
                                                         }
 
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
                                                     }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
 
                                                 } else if (m.group(0).contains(datecheck5)) {
@@ -1986,34 +2105,59 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            }
-                                                        }
-
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
                                                     }
 
+                                                        if(story.has("story")){
+                                                            String PostStory = story.getString("story");
+                                                            for(int n = 0;n<storyTimeline.size();n++){
+
+                                                                String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                                Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                                Matcher mcheck = regexcheck.matcher(PostStory);
+                                                                String rank = storyTimeline.get(n).get("CheckinRank");
+                                                                int countrank = Integer.parseInt(rank);
+
+                                                                if (mcheck.find()){
+                                                                    count = count+countrank;
+                                                                    checkifword++;
+                                                                }
+
+                                                            }
+
+
+                                                            KeepStory = PostStory;
+
+
+                                                        }
+
+
+
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
                                                 } else if (m.group(0).contains(datecheck6)) {
 
@@ -2304,33 +2448,58 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
+                                                    }
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        if(story.has("story")){
+                                                            String PostStory = story.getString("story");
+                                                            for(int n = 0;n<storyTimeline.size();n++){
 
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                                String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                                Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                                Matcher mcheck = regexcheck.matcher(PostStory);
+                                                                String rank = storyTimeline.get(n).get("CheckinRank");
+                                                                int countrank = Integer.parseInt(rank);
 
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                                if (mcheck.find()){
+                                                                    count = count+countrank;
+                                                                    checkifword++;
+                                                                }
 
                                                             }
+
+
+                                                            KeepStory = PostStory;
+
+
                                                         }
 
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
                                                     }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
 
 
                                                 } else if (m.group(0).contains(datecheck7)) {
@@ -2622,39 +2791,73 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            }
-                                                        }
-
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
                                                     }
+
+
+                                                        if(story.has("story")){
+                                                            String PostStory = story.getString("story");
+                                                            for(int n = 0;n<storyTimeline.size();n++){
+
+                                                                String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                                Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                                Matcher mcheck = regexcheck.matcher(PostStory);
+                                                                String rank = storyTimeline.get(n).get("CheckinRank");
+                                                                int countrank = Integer.parseInt(rank);
+
+                                                                if (mcheck.find()){
+                                                                    count = count+countrank;
+                                                                    checkifword++;
+                                                                }
+
+                                                            }
+
+
+                                                            KeepStory = PostStory;
+                                                            }
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
 
                                                 }
                                             }
                                             //Toast.makeText(TimelineActivity.this,timeMessage,Toast.LENGTH_SHORT).show();
                                         }
+
+
+
+
+
+
+
+
+
 
 
                                     }
@@ -2756,7 +2959,7 @@ public class TimelineActivity extends AppCompatActivity {
                     }
             );
             Bundle parameters = new Bundle();
-            parameters.putString("fields", "created_time,message");
+            parameters.putString("fields", "created_time,message,story");
             request.setParameters(parameters);
             request.executeAsync();
 
@@ -2832,12 +3035,17 @@ public class TimelineActivity extends AppCompatActivity {
 
                                 JSONArray postsData = jsonData.getJSONArray("data");
                                 if (postsData != null) {
+                                    ArrayList<HashMap<String,String>> storyTimeline = databaseCheckin.getCheckinWord();
 
                                     for (int i = 0; i < postsData.length(); i++) {
 
                                         strword.clear();
                                         emo.clear();
                                         listemo.clear();
+
+
+                                        String KeepStory = "";
+                                        String keepMessage = "";
 
                                         int countchexkemo = 0;
                                         int count = 0;
@@ -3149,33 +3357,58 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            }
-                                                        }
-
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
                                                     }
+
+                                                    if(story.has("story")){
+                                                        String PostStory = story.getString("story");
+                                                        for(int n = 0;n<storyTimeline.size();n++){
+
+                                                            String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                            Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                            Matcher mcheck = regexcheck.matcher(PostStory);
+                                                            String rank = storyTimeline.get(n).get("CheckinRank");
+                                                            int countrank = Integer.parseInt(rank);
+
+                                                            if (mcheck.find()){
+                                                                count = count+countrank;
+                                                                checkifword++;
+                                                            }
+
+                                                        }
+
+
+                                                        KeepStory = PostStory;
+
+
+                                                    }
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
                                                 } else if (m.group(0).contains(datecheck22)) {
 
@@ -3466,33 +3699,58 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            }
-                                                        }
-
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
 
                                                     }
+
+                                                    if(story.has("story")){
+                                                        String PostStory = story.getString("story");
+                                                        for(int n = 0;n<storyTimeline.size();n++){
+
+                                                            String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                            Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                            Matcher mcheck = regexcheck.matcher(PostStory);
+                                                            String rank = storyTimeline.get(n).get("CheckinRank");
+                                                            int countrank = Integer.parseInt(rank);
+
+                                                            if (mcheck.find()){
+                                                                count = count+countrank;
+                                                                checkifword++;
+                                                            }
+
+                                                        }
+
+
+                                                        KeepStory = PostStory;
+
+
+                                                    }
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
 
                                                 } else if (m.group(0).contains(datecheck33)) {
@@ -3784,33 +4042,57 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            }
-                                                        }
-
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
                                                     }
+                                                    if(story.has("story")){
+                                                        String PostStory = story.getString("story");
+                                                        for(int n = 0;n<storyTimeline.size();n++){
+
+                                                            String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                            Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                            Matcher mcheck = regexcheck.matcher(PostStory);
+                                                            String rank = storyTimeline.get(n).get("CheckinRank");
+                                                            int countrank = Integer.parseInt(rank);
+
+                                                            if (mcheck.find()){
+                                                                count = count+countrank;
+                                                                checkifword++;
+                                                            }
+
+                                                        }
+
+
+                                                        KeepStory = PostStory;
+
+
+                                                    }
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
                                                 } else if (m.group(0).contains(datecheck44)) {
 
@@ -4101,33 +4383,58 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            }
-                                                        }
-
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
 
                                                     }
+                                                    if(story.has("story")){
+                                                        String PostStory = story.getString("story");
+                                                        for(int n = 0;n<storyTimeline.size();n++){
+
+                                                            String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                            Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                            Matcher mcheck = regexcheck.matcher(PostStory);
+                                                            String rank = storyTimeline.get(n).get("CheckinRank");
+                                                            int countrank = Integer.parseInt(rank);
+
+                                                            if (mcheck.find()){
+                                                                count = count+countrank;
+                                                                checkifword++;
+                                                            }
+
+                                                        }
+
+
+                                                        KeepStory = PostStory;
+
+
+                                                    }
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
 
 
                                                 } else if (m.group(0).contains(datecheck55)) {
@@ -4419,33 +4726,58 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            }
-                                                        }
-
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
                                                     }
+
+                                                    if(story.has("story")){
+                                                        String PostStory = story.getString("story");
+                                                        for(int n = 0;n<storyTimeline.size();n++){
+
+                                                            String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                            Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                            Matcher mcheck = regexcheck.matcher(PostStory);
+                                                            String rank = storyTimeline.get(n).get("CheckinRank");
+                                                            int countrank = Integer.parseInt(rank);
+
+                                                            if (mcheck.find()){
+                                                                count = count+countrank;
+                                                                checkifword++;
+                                                            }
+
+                                                        }
+
+
+                                                        KeepStory = PostStory;
+
+
+                                                    }
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
 
                                                 } else if (m.group(0).contains(datecheck66)) {
@@ -4737,33 +5069,56 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
+                                                    }
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                    if(story.has("story")){
+                                                        String PostStory = story.getString("story");
+                                                        for(int n = 0;n<storyTimeline.size();n++){
 
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                            String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                            Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                            Matcher mcheck = regexcheck.matcher(PostStory);
+                                                            String rank = storyTimeline.get(n).get("CheckinRank");
+                                                            int countrank = Integer.parseInt(rank);
 
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
+                                                            if (mcheck.find()){
+                                                                count = count+countrank;
+                                                                checkifword++;
                                                             }
+
                                                         }
 
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+
+                                                        KeepStory = PostStory;
+
 
                                                     }
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
 
                                                 } else if (m.group(0).contains(datecheck77)) {
@@ -5055,33 +5410,58 @@ public class TimelineActivity extends AppCompatActivity {
 
                                                         }
 
-                                                        if (checkifemo > 0 && countchexkemo > 0) {
-                                                            allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
 
-                                                        } else if (checkifemo > 0 && countchexkemo == 0) {
-                                                            allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else if (checkifemo > 0 && countchexkemo < 0) {
-                                                            allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                        } else {
-                                                            if (checkifword > 0 && count > 0) {
-                                                                allPostsMessagesPos.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-                                                            } else if (checkifword > 0 && count == 0) {
-                                                                allPostsMessagesNeural.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else if (checkifword > 0 && count < 0) {
-                                                                allPostsMessagesNege.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            } else {
-                                                                allPostsMessagesNot.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
-
-                                                            }
-                                                        }
-
-                                                        allPostsMessages.add("โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage);
+                                                        keepMessage = "โพสต์เมื่อ : " + m.group(0) + "\n" + "ข้อความที่โพสต์ : " + postMessage;
 
                                                     }
+
+                                                    if(story.has("story")){
+                                                        String PostStory = story.getString("story");
+                                                        for(int n = 0;n<storyTimeline.size();n++){
+
+                                                            String checkwordbyregular = storyTimeline.get(n).get("CheckinWord");
+                                                            Pattern regexcheck = Pattern.compile(checkwordbyregular);
+                                                            Matcher mcheck = regexcheck.matcher(PostStory);
+                                                            String rank = storyTimeline.get(n).get("CheckinRank");
+                                                            int countrank = Integer.parseInt(rank);
+
+                                                            if (mcheck.find()){
+                                                                count = count+countrank;
+                                                                checkifword++;
+                                                            }
+
+                                                        }
+
+
+                                                        KeepStory = PostStory;
+
+
+                                                    }
+                                                    if (checkifemo > 0 && countchexkemo > 0) {
+                                                        allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo == 0) {
+                                                        allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else if (checkifemo > 0 && countchexkemo < 0) {
+                                                        allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                    } else {
+                                                        if (checkifword > 0 && count > 0) {
+                                                            allPostsMessagesPos.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+                                                        } else if (checkifword > 0 && count == 0) {
+                                                            allPostsMessagesNeural.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else if (checkifword > 0 && count < 0) {
+                                                            allPostsMessagesNege.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        } else {
+                                                            allPostsMessagesNot.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
+
+                                                        }
+                                                    }
+
+                                                    allPostsMessages.add(keepMessage + "\n"+"เรื่องราว : "+KeepStory );
 
 
                                                 }
@@ -5188,7 +5568,7 @@ public class TimelineActivity extends AppCompatActivity {
                     }
             );
             Bundle parameters = new Bundle();
-            parameters.putString("fields", "created_time,message");
+            parameters.putString("fields", "created_time,message,story");
             request.setParameters(parameters);
             request.executeAsync();
 

@@ -440,277 +440,277 @@ public class Database3 extends SQLiteOpenHelper {
         attvalue1021.put("AttitudeID",1021);
         attvalue1021.put("AttitudeWord","ทุเรด");
         attvalue1021.put("AttitudeRank",-1);
-        attvalue1021.put("Emotion",4);
+        attvalue1021.put("Emotion","4");
 
         attvalue1022.put("AttitudeID",1022);
         attvalue1022.put("AttitudeWord","ทุเรศ");
         attvalue1022.put("AttitudeRank",-1);
-        attvalue1022.put("Emotion",4);
+        attvalue1022.put("Emotion","4");
 
         attvalue1023.put("AttitudeID",1023);
         attvalue1023.put("AttitudeWord","กระชาก");
         attvalue1023.put("AttitudeRank",-1);
-        attvalue1023.put("Emotion",8);
+        attvalue1023.put("Emotion","8");
 
         attvalue1024.put("AttitudeID",1024);
         attvalue1024.put("AttitudeWord","กระดอ");
         attvalue1024.put("AttitudeRank",-1);
-        attvalue1024.put("Emotion",8);
+        attvalue1024.put("Emotion","8");
 
         attvalue1025.put("AttitudeID",1025);
         attvalue1025.put("AttitudeWord","กระทืบ");
         attvalue1025.put("AttitudeRank",-1);
-        attvalue1025.put("Emotion",5);
+        attvalue1025.put("Emotion","5");
 
         attvalue1026.put("AttitudeID",1026);
         attvalue1026.put("AttitudeWord","กระแทก");
         attvalue1026.put("AttitudeRank",-1);
-        attvalue1026.put("Emotion",8);
+        attvalue1026.put("Emotion","8");
 
         attvalue1027.put("AttitudeID",1027);
         attvalue1027.put("AttitudeWord","กระหรี่");
         attvalue1027.put("AttitudeRank",-1);
-        attvalue1027.put("Emotion",4);
+        attvalue1027.put("Emotion","4");
 
         attvalue1028.put("AttitudeID",1028);
         attvalue1028.put("AttitudeWord","กระหึ่ม");
         attvalue1028.put("AttitudeRank",-1);
-        attvalue1028.put("Emotion",8);
+        attvalue1028.put("Emotion","8");
 
         attvalue1029.put("AttitudeID",1029);
         attvalue1029.put("AttitudeWord","กราดเกรี้ยว");
         attvalue1029.put("AttitudeRank",-1);
-        attvalue1029.put("Emotion",5);
+        attvalue1029.put("Emotion","5");
 
         attvalue1030.put("AttitudeID",1030);
         attvalue1030.put("AttitudeWord","กลั่นแกล้ง");
         attvalue1030.put("AttitudeRank",-1);
-        attvalue1030.put("Emotion",15);
+        attvalue1030.put("Emotion","15");
 
         attvalue1031.put("AttitudeID",1031);
         attvalue1031.put("AttitudeWord","กล่าวหา");
         attvalue1031.put("AttitudeRank",-1);
-        attvalue1031.put("Emotion",8);
+        attvalue1031.put("Emotion","8");
 
         attvalue1032.put("AttitudeID",1032);
         attvalue1032.put("AttitudeWord","กวน");
         attvalue1032.put("AttitudeRank",-1);
-        attvalue1032.put("Emotion",5);
+        attvalue1032.put("Emotion","5");
 
         attvalue1033.put("AttitudeID",1033);
         attvalue1033.put("AttitudeWord","กวนตีน");
         attvalue1033.put("AttitudeRank",-1);
-        attvalue1033.put("Emotion",5);
+        attvalue1033.put("Emotion","5");
 
         attvalue1034.put("AttitudeID",1034);
         attvalue1034.put("AttitudeWord","กวนส้นตีน");
         attvalue1034.put("AttitudeRank",-1);
-        attvalue1034.put("Emotion",5);
+        attvalue1034.put("Emotion","5");
 
         attvalue1035.put("AttitudeID",1035);
         attvalue1035.put("AttitudeWord","กวาดล้าง");
         attvalue1035.put("AttitudeRank",-1);
-        attvalue1035.put("Emotion",8);
+        attvalue1035.put("Emotion","8");
 
         attvalue1036.put("AttitudeID",1036);
         attvalue1036.put("AttitudeWord","กอบโกย");
         attvalue1036.put("AttitudeRank",-1);
-        attvalue1036.put("Emotion",1);
+        attvalue1036.put("Emotion","1");
 
         attvalue1037.put("AttitudeID",1037);
         attvalue1037.put("AttitudeWord","กะหรี่");
         attvalue1037.put("AttitudeRank",-1);
-        attvalue1037.put("Emotion",4);
+        attvalue1037.put("Emotion","4");
 
         attvalue1038.put("AttitudeID",1038);
         attvalue1038.put("AttitudeWord","กัก");
         attvalue1038.put("AttitudeRank",-1);
-        attvalue1038.put("Emotion",015);
+        attvalue1038.put("Emotion","015");
 
         attvalue1039.put("AttitudeID",1039);
         attvalue1039.put("AttitudeWord","กักขัง");
         attvalue1039.put("AttitudeRank",-1);
-        attvalue1039.put("Emotion",015);
+        attvalue1039.put("Emotion","015");
 
         attvalue1040.put("AttitudeID",1040);
         attvalue1040.put("AttitudeWord","กังขา");
         attvalue1040.put("AttitudeRank",-1);
-        attvalue1040.put("Emotion",8);
+        attvalue1040.put("Emotion","8");
 
         attvalue1041.put("AttitudeID",1041);
         attvalue1041.put("AttitudeWord","กัด");
         attvalue1041.put("AttitudeRank",-1);
-        attvalue1041.put("Emotion",8);
+        attvalue1041.put("Emotion","8");
 
         attvalue1042.put("AttitudeID",1042);
         attvalue1042.put("AttitudeWord","ก้าวก่าย");
         attvalue1042.put("AttitudeRank",-1);
-        attvalue1042.put("Emotion",15);
+        attvalue1042.put("Emotion","15");
 
         attvalue1043.put("AttitudeID",1043);
         attvalue1043.put("AttitudeWord","กำจัด");
         attvalue1043.put("AttitudeRank",-1);
-        attvalue1043.put("Emotion",8);
+        attvalue1043.put("Emotion","8");
 
         attvalue1044.put("AttitudeID",1044);
         attvalue1044.put("AttitudeWord","กำเริบ");
         attvalue1044.put("AttitudeRank",-1);
-        attvalue1044.put("Emotion",8);
+        attvalue1044.put("Emotion","8");
 
         attvalue1045.put("AttitudeID",1045);
         attvalue1045.put("AttitudeWord","เกร็ง");
         attvalue1045.put("AttitudeRank",-1);
-        attvalue1045.put("Emotion",8);
+        attvalue1045.put("Emotion","8");
 
         attvalue1046.put("AttitudeID",1046);
         attvalue1046.put("AttitudeWord","เกรงกลัว");
         attvalue1046.put("AttitudeRank",-1);
-        attvalue1046.put("Emotion",1);
+        attvalue1046.put("Emotion","1");
 
         attvalue1047.put("AttitudeID",1047);
         attvalue1047.put("AttitudeWord","เกเร");
         attvalue1047.put("AttitudeRank",-1);
-        attvalue1047.put("Emotion",45);
+        attvalue1047.put("Emotion","45");
 
         attvalue1048.put("AttitudeID",1048);
         attvalue1048.put("AttitudeWord","เกลื่อน");
         attvalue1048.put("AttitudeRank",-1);
-        attvalue1048.put("Emotion",8);
+        attvalue1048.put("Emotion","8");
 
         attvalue1049.put("AttitudeID",1049);
         attvalue1049.put("AttitudeWord","เกิน");
         attvalue1049.put("AttitudeRank",-1);
-        attvalue1049.put("Emotion",8);
+        attvalue1049.put("Emotion","8");
 
         attvalue1050.put("AttitudeID",1050);
         attvalue1050.put("AttitudeWord","แก่");
         attvalue1050.put("AttitudeRank",-1);
-        attvalue1050.put("Emotion",8);
+        attvalue1050.put("Emotion","8");
 
         attvalue1051.put("AttitudeID",1051);
         attvalue1051.put("AttitudeWord","แก่งแย่ง");
         attvalue1051.put("AttitudeRank",-1);
-        attvalue1051.put("Emotion",5);
+        attvalue1051.put("Emotion","5");
 
         attvalue1052.put("AttitudeID",1052);
         attvalue1052.put("AttitudeWord","แกว่ง");
         attvalue1052.put("AttitudeRank",-1);
-        attvalue1052.put("Emotion",8);
+        attvalue1052.put("Emotion","8");
 
         attvalue1053.put("AttitudeID",1053);
         attvalue1053.put("AttitudeWord","ข่มขวัญ");
         attvalue1053.put("AttitudeRank",-1);
-        attvalue1053.put("Emotion",01);
+        attvalue1053.put("Emotion","01");
 
         attvalue1054.put("AttitudeID",1054);
         attvalue1054.put("AttitudeWord","ข่มขี่");
         attvalue1054.put("AttitudeRank",-1);
-        attvalue1054.put("Emotion",01);
+        attvalue1054.put("Emotion","01");
 
         attvalue1055.put("AttitudeID",1055);
         attvalue1055.put("AttitudeWord","ขโมย");
         attvalue1055.put("AttitudeRank",-1);
-        attvalue1055.put("Emotion",05);
+        attvalue1055.put("Emotion","05");
 
         attvalue1056.put("AttitudeID",1056);
         attvalue1056.put("AttitudeWord","ขวาง");
         attvalue1056.put("AttitudeRank",-1);
-        attvalue1056.put("Emotion",5);
+        attvalue1056.put("Emotion","5");
 
         attvalue1057.put("AttitudeID",1057);
         attvalue1057.put("AttitudeWord","ขวางโลก");
         attvalue1057.put("AttitudeRank",-1);
-        attvalue1057.put("Emotion",45);
+        attvalue1057.put("Emotion","45");
 
         attvalue1058.put("AttitudeID",1058);
         attvalue1058.put("AttitudeWord","ขัง");
         attvalue1058.put("AttitudeRank",-1);
-        attvalue1058.put("Emotion",015);
+        attvalue1058.put("Emotion","015");
 
         attvalue1059.put("AttitudeID",1059);
         attvalue1059.put("AttitudeWord","ขัดขวาง");
         attvalue1059.put("AttitudeRank",-1);
-        attvalue1059.put("Emotion",0);
+        attvalue1059.put("Emotion","0");
 
         attvalue1060.put("AttitudeID",1060);
         attvalue1060.put("AttitudeWord","ขัดข้อง");
         attvalue1060.put("AttitudeRank",-1);
-        attvalue1060.put("Emotion",8);
+        attvalue1060.put("Emotion","8");
 
         attvalue1061.put("AttitudeID",1061);
         attvalue1061.put("AttitudeWord","ขัดขืน");
         attvalue1061.put("AttitudeRank",-1);
-        attvalue1061.put("Emotion",145);
+        attvalue1061.put("Emotion","145");
 
         attvalue1062.put("AttitudeID",1062);
         attvalue1062.put("AttitudeWord","ขาดแคลน");
         attvalue1062.put("AttitudeRank",-1);
-        attvalue1062.put("Emotion",0);
+        attvalue1062.put("Emotion","0");
 
         attvalue1063.put("AttitudeID",1063);
         attvalue1063.put("AttitudeWord","ขาดทุน");
         attvalue1063.put("AttitudeRank",-1);
-        attvalue1063.put("Emotion",0);
+        attvalue1063.put("Emotion","0");
 
         attvalue1064.put("AttitudeID",1064);
         attvalue1064.put("AttitudeWord","ขายชาติ");
         attvalue1064.put("AttitudeRank",-1);
-        attvalue1064.put("Emotion",45);
+        attvalue1064.put("Emotion","45");
 
         attvalue1065.put("AttitudeID",1065);
         attvalue1065.put("AttitudeWord","ขายหน้า");
         attvalue1065.put("AttitudeRank",-1);
-        attvalue1065.put("Emotion",014);
+        attvalue1065.put("Emotion","014");
 
         attvalue1066.put("AttitudeID",1066);
         attvalue1066.put("AttitudeWord","ขาลง");
         attvalue1066.put("AttitudeRank",-1);
-        attvalue1066.put("Emotion",8);
+        attvalue1066.put("Emotion","8");
 
         attvalue1067.put("AttitudeID",1067);
         attvalue1067.put("AttitudeWord","ขี้");
         attvalue1067.put("AttitudeRank",-1);
-        attvalue1067.put("Emotion",8);
+        attvalue1067.put("Emotion","8");
 
         attvalue1068.put("AttitudeID",1068);
         attvalue1068.put("AttitudeWord","ขืน");
         attvalue1068.put("AttitudeRank",-1);
-        attvalue1068.put("Emotion",145);
+        attvalue1068.put("Emotion","145");
 
         attvalue1069.put("AttitudeID",1069);
         attvalue1069.put("AttitudeWord","ขู่เข็ญ");
         attvalue1069.put("AttitudeRank",-1);
-        attvalue1069.put("Emotion",1);
+        attvalue1069.put("Emotion","1");
 
         attvalue1070.put("AttitudeID",1070);
         attvalue1070.put("AttitudeWord","เขวี้ยง");
         attvalue1070.put("AttitudeRank",-1);
-        attvalue1070.put("Emotion",8);
+        attvalue1070.put("Emotion","8");
 
         attvalue1071.put("AttitudeID",1071);
         attvalue1071.put("AttitudeWord","คดโกง");
         attvalue1071.put("AttitudeRank",-1);
-        attvalue1071.put("Emotion",45);
+        attvalue1071.put("Emotion","45");
 
         attvalue1072.put("AttitudeID",1072);
         attvalue1072.put("AttitudeWord","คดงอ");
         attvalue1072.put("AttitudeRank",-1);
-        attvalue1072.put("Emotion",2);
+        attvalue1072.put("Emotion","2");
 
         attvalue1073.put("AttitudeID",1073);
         attvalue1073.put("AttitudeWord","คลาดเคลื่อน");
         attvalue1073.put("AttitudeRank",-1);
-        attvalue1073.put("Emotion",8);
+        attvalue1073.put("Emotion","8");
 
         attvalue1074.put("AttitudeID",1074);
         attvalue1074.put("AttitudeWord","คลื่นไส้");
         attvalue1074.put("AttitudeRank",-1);
-        attvalue1074.put("Emotion",4);
+        attvalue1074.put("Emotion","4");
 
         attvalue1075.put("AttitudeID",1075);
         attvalue1075.put("AttitudeWord","ควย");
         attvalue1075.put("AttitudeRank",-1);
-        attvalue1075.put("Emotion",5);
+        attvalue1075.put("Emotion","5");
 
         attvalue1076.put("AttitudeID",1076);
         attvalue1076.put("AttitudeWord","ควาย");
@@ -720,1123 +720,1122 @@ public class Database3 extends SQLiteOpenHelper {
         attvalue1077.put("AttitudeID",1077);
         attvalue1077.put("AttitudeWord","คว่ำ");
         attvalue1077.put("AttitudeRank",-1);
-        attvalue1077.put("Emotion",8);
+        attvalue1077.put("Emotion","8");
 
         attvalue1078.put("AttitudeID",1078);
         attvalue1078.put("AttitudeWord","คอร์รัปชัน");
         attvalue1078.put("AttitudeRank",-1);
-        attvalue1078.put("Emotion",4);
+        attvalue1078.put("Emotion","4");
 
         attvalue1079.put("AttitudeID",1079);
         attvalue1079.put("AttitudeWord","คัดค้าน");
         attvalue1079.put("AttitudeRank",-1);
-        attvalue1079.put("Emotion",8);
+        attvalue1079.put("Emotion","8");
 
         attvalue1080.put("AttitudeID",1080);
         attvalue1080.put("AttitudeWord","ค้างคา");
         attvalue1080.put("AttitudeRank",-1);
-        attvalue1080.put("Emotion",8);
+        attvalue1080.put("Emotion","8");
 
         attvalue1081.put("AttitudeID",1081);
         attvalue1081.put("AttitudeWord","คุมขัง");
         attvalue1081.put("AttitudeRank",-1);
-        attvalue1081.put("Emotion",015);
+        attvalue1081.put("Emotion","015");
 
         attvalue1082.put("AttitudeID",1082);
         attvalue1082.put("AttitudeWord","คุมตัว");
         attvalue1082.put("AttitudeRank",-1);
-        attvalue1082.put("Emotion",8);
+        attvalue1082.put("Emotion","8");
 
         attvalue1083.put("AttitudeID",1083);
         attvalue1083.put("AttitudeWord","เค้น");
         attvalue1083.put("AttitudeRank",-1);
-        attvalue1083.put("Emotion",8);
+        attvalue1083.put("Emotion","8");
 
         attvalue1084.put("AttitudeID",1084);
         attvalue1084.put("AttitudeWord","เคร่ง");
         attvalue1084.put("AttitudeRank",-1);
-        attvalue1084.put("Emotion",8);
+        attvalue1084.put("Emotion","8");
 
         attvalue1085.put("AttitudeID",1085);
         attvalue1085.put("AttitudeWord","เคร่งขึม");
         attvalue1085.put("AttitudeRank",-1);
-        attvalue1085.put("Emotion",1);
+        attvalue1085.put("Emotion","1");
 
         attvalue1086.put("AttitudeID",1086);
         attvalue1086.put("AttitudeWord","เควี่ย");
         attvalue1086.put("AttitudeRank",-1);
-        attvalue1086.put("Emotion",8);
+        attvalue1086.put("Emotion","8");
 
         attvalue1087.put("AttitudeID",1087);
         attvalue1087.put("AttitudeWord","เคือง");
         attvalue1087.put("AttitudeRank",-1);
-        attvalue1087.put("Emotion",5);
+        attvalue1087.put("Emotion","5");
 
         attvalue1088.put("AttitudeID",1088);
         attvalue1088.put("AttitudeWord","ฆ่า");
         attvalue1088.put("AttitudeRank",-1);
-        attvalue1088.put("Emotion",01);
+        attvalue1088.put("Emotion","01");
 
         attvalue1089.put("AttitudeID",1089);
         attvalue1089.put("AttitudeWord","ฆาต");
         attvalue1089.put("AttitudeRank",-1);
-        attvalue1089.put("Emotion",01);
+        attvalue1089.put("Emotion","01");
 
         attvalue1090.put("AttitudeID",1090);
         attvalue1090.put("AttitudeWord","เฆี่ยน");
         attvalue1090.put("AttitudeRank",-1);
-        attvalue1090.put("Emotion",15);
+        attvalue1090.put("Emotion","15");
 
         attvalue1091.put("AttitudeID",1091);
         attvalue1091.put("AttitudeWord","งอ");
         attvalue1091.put("AttitudeRank",-1);
-        attvalue1091.put("Emotion",8);
+        attvalue1091.put("Emotion","8");
 
         attvalue1092.put("AttitudeID",1092);
         attvalue1092.put("AttitudeWord","เงี่ยน");
         attvalue1092.put("AttitudeRank",-1);
-        attvalue1092.put("Emotion",8);
+        attvalue1092.put("Emotion","8");
 
         attvalue1093.put("AttitudeID",1093);
         attvalue1093.put("AttitudeWord","จม");
         attvalue1093.put("AttitudeRank",-1);
-        attvalue1093.put("Emotion",8);
+        attvalue1093.put("Emotion","8");
 
         attvalue1094.put("AttitudeID",1094);
         attvalue1094.put("AttitudeWord","จรวย");
         attvalue1094.put("AttitudeRank",-1);
-        attvalue1094.put("Emotion",8);
+        attvalue1094.put("Emotion","8");
 
         attvalue1095.put("AttitudeID",1095);
         attvalue1095.put("AttitudeWord","จังไร");
         attvalue1095.put("AttitudeRank",-1);
-        attvalue1095.put("Emotion",45);
+        attvalue1095.put("Emotion","45");
 
         attvalue1096.put("AttitudeID",1096);
         attvalue1096.put("AttitudeWord","จัญไร");
         attvalue1096.put("AttitudeRank",-1);
-        attvalue1096.put("Emotion",45);
+        attvalue1096.put("Emotion","45");
 
         attvalue1097.put("AttitudeID",1097);
         attvalue1097.put("AttitudeWord","จับกุม");
         attvalue1097.put("AttitudeRank",-1);
-        attvalue1097.put("Emotion",8);
+        attvalue1097.put("Emotion","8");
 
         attvalue1098.put("AttitudeID",1098);
         attvalue1098.put("AttitudeWord","จำกัด");
         attvalue1098.put("AttitudeRank",-1);
-        attvalue1098.put("Emotion",8);
+        attvalue1098.put("Emotion","8");
 
         attvalue1099.put("AttitudeID",1099);
         attvalue1099.put("AttitudeWord","จิก");
         attvalue1099.put("AttitudeRank",-1);
-        attvalue1099.put("Emotion",45);
+        attvalue1099.put("Emotion","45");
 
         attvalue1100.put("AttitudeID",1100);
         attvalue1100.put("AttitudeWord","เจ็บ");
         attvalue1100.put("AttitudeRank",-1);
-        attvalue1100.put("Emotion",05);
+        attvalue1100.put("Emotion","05");
 
         attvalue1101.put("AttitudeID",1101);
         attvalue1101.put("AttitudeWord","เจือจาง");
         attvalue1101.put("AttitudeRank",-1);
-        attvalue1101.put("Emotion",8);
+        attvalue1101.put("Emotion","8");
 
         attvalue1102.put("AttitudeID",1102);
         attvalue1102.put("AttitudeWord","ฉ้อ");
         attvalue1102.put("AttitudeRank",-1);
-        attvalue1102.put("Emotion",45);
+        attvalue1102.put("Emotion","45");
 
         attvalue1103.put("AttitudeID",1103);
         attvalue1103.put("AttitudeWord","ฉีก");
         attvalue1103.put("AttitudeRank",-1);
-        attvalue1103.put("Emotion",8);
+        attvalue1103.put("Emotion","8");
 
         attvalue1104.put("AttitudeID",1104);
         attvalue1104.put("AttitudeWord","เฉื่อย");
         attvalue1104.put("AttitudeRank",-1);
-        attvalue1104.put("Emotion",8);
+        attvalue1104.put("Emotion","8");
 
         attvalue1105.put("AttitudeID",1105);
         attvalue1105.put("AttitudeWord","ชก");
         attvalue1105.put("AttitudeRank",-1);
-        attvalue1105.put("Emotion",5);
+        attvalue1105.put("Emotion","5");
 
         attvalue1106.put("AttitudeID",1106);
         attvalue1106.put("AttitudeWord","ช่วงชิง");
         attvalue1106.put("AttitudeRank",-1);
-        attvalue1106.put("Emotion",45);
+        attvalue1106.put("Emotion","45");
 
         attvalue1107.put("AttitudeID",1107);
         attvalue1107.put("AttitudeWord","ชาติหมา");
         attvalue1107.put("AttitudeRank",-1);
-        attvalue1107.put("Emotion",5);
+        attvalue1107.put("Emotion","5");
 
         attvalue1108.put("AttitudeID",1108);
         attvalue1108.put("AttitudeWord","ชิบหาย");
         attvalue1108.put("AttitudeRank",-1);
-        attvalue1108.put("Emotion",05);
+        attvalue1108.put("Emotion","05");
 
         attvalue1109.put("AttitudeID",1109);
         attvalue1109.put("AttitudeWord","ชู้สาว");
         attvalue1109.put("AttitudeRank",-1);
-        attvalue1109.put("Emotion",8);
+        attvalue1109.put("Emotion","8");
 
         attvalue1110.put("AttitudeID",1110);
         attvalue1110.put("AttitudeWord","เชี่ย");
         attvalue1110.put("AttitudeRank",-1);
-        attvalue1110.put("Emotion",8);
+        attvalue1110.put("Emotion","8");
 
         attvalue1111.put("AttitudeID",1111);
         attvalue1111.put("AttitudeWord","แซะ");
         attvalue1111.put("AttitudeRank",-1);
-        attvalue1111.put("Emotion",45);
+        attvalue1111.put("Emotion","45");
 
         attvalue1112.put("AttitudeID",1112);
         attvalue1112.put("AttitudeWord","เณรคุณ");
         attvalue1112.put("AttitudeRank",-1);
-        attvalue1112.put("Emotion",45);
+        attvalue1112.put("Emotion","45");
 
         attvalue1113.put("AttitudeID",1113);
         attvalue1113.put("AttitudeWord","ดับ");
         attvalue1113.put("AttitudeRank",-1);
-        attvalue1113.put("Emotion",5);
+        attvalue1113.put("Emotion","5");
 
         attvalue1114.put("AttitudeID",1114);
         attvalue1114.put("AttitudeWord","ดูหมิ่น");
         attvalue1114.put("AttitudeRank",-1);
-        attvalue1114.put("Emotion",5);
+        attvalue1114.put("Emotion","5");
 
         attvalue1115.put("AttitudeID",1115);
         attvalue1115.put("AttitudeWord","เดือด");
         attvalue1115.put("AttitudeRank",-1);
-        attvalue1115.put("Emotion",5);
+        attvalue1115.put("Emotion","5");
 
         attvalue1116.put("AttitudeID",1116);
         attvalue1116.put("AttitudeWord","แดก");
         attvalue1116.put("AttitudeRank",-1);
-        attvalue1116.put("Emotion",8);
+        attvalue1116.put("Emotion","8");
 
         attvalue1117.put("AttitudeID",1117);
         attvalue1117.put("AttitudeWord","ตบ");
         attvalue1117.put("AttitudeRank",-1);
-        attvalue1117.put("Emotion",5);
+        attvalue1117.put("Emotion","5");
 
         attvalue1118.put("AttitudeID",1118);
         attvalue1118.put("AttitudeWord","ตราหน้า");
         attvalue1118.put("AttitudeRank",-1);
-        attvalue1118.put("Emotion",4);
+        attvalue1118.put("Emotion","4");
 
         attvalue1119.put("AttitudeID",1119);
         attvalue1119.put("AttitudeWord","ตอบโต้");
         attvalue1119.put("AttitudeRank",-1);
-        attvalue1119.put("Emotion",5);
+        attvalue1119.put("Emotion","5");
 
         attvalue1120.put("AttitudeID",1120);
         attvalue1120.put("AttitudeWord","ต่อย");
         attvalue1120.put("AttitudeRank",-1);
-        attvalue1120.put("Emotion",5);
+        attvalue1120.put("Emotion","5");
 
         attvalue1121.put("AttitudeID",1121);
         attvalue1121.put("AttitudeWord","ต่อสู้");
         attvalue1121.put("AttitudeRank",-1);
-        attvalue1121.put("Emotion",5);
+        attvalue1121.put("Emotion","5");
 
         attvalue1122.put("AttitudeID",1122);
         attvalue1122.put("AttitudeWord","ตอแหล");
         attvalue1122.put("AttitudeRank",-1);
-        attvalue1122.put("Emotion",45);
+        attvalue1122.put("Emotion","45");
 
         attvalue1123.put("AttitudeID",1123);
         attvalue1123.put("AttitudeWord","ตะลุมบอน");
         attvalue1123.put("AttitudeRank",-1);
-        attvalue1123.put("Emotion",5);
+        attvalue1123.put("Emotion","5");
 
         attvalue1124.put("AttitudeID",1124);
         attvalue1124.put("AttitudeWord","ตั้งแง่");
         attvalue1124.put("AttitudeRank",-1);
-        attvalue1124.put("Emotion",8);
+        attvalue1124.put("Emotion","8");
 
         attvalue1125.put("AttitudeID",1125);
         attvalue1125.put("AttitudeWord","ตัดขาด");
         attvalue1125.put("AttitudeRank",-1);
-        attvalue1125.put("Emotion",0);
+        attvalue1125.put("Emotion","0");
 
         attvalue1126.put("AttitudeID",1126);
         attvalue1126.put("AttitudeWord","ตาขาว");
         attvalue1126.put("AttitudeRank",-1);
-        attvalue1126.put("Emotion",1);
+        attvalue1126.put("Emotion","1");
 
         attvalue1127.put("AttitudeID",1127);
         attvalue1127.put("AttitudeWord","ตาย");
         attvalue1127.put("AttitudeRank",-1);
-        attvalue1127.put("Emotion",01);
+        attvalue1127.put("Emotion","01");
 
         attvalue1128.put("AttitudeID",1128);
         attvalue1128.put("AttitudeWord","ตายด้าน");
         attvalue1128.put("AttitudeRank",-1);
-        attvalue1128.put("Emotion",8);
+        attvalue1128.put("Emotion","8");
 
         attvalue1129.put("AttitudeID",1129);
         attvalue1129.put("AttitudeWord","ติเตียน");
         attvalue1129.put("AttitudeRank",-1);
-        attvalue1129.put("Emotion",45);
+        attvalue1129.put("Emotion","45");
 
         attvalue1130.put("AttitudeID",1130);
         attvalue1130.put("AttitudeWord","ตี");
         attvalue1130.put("AttitudeRank",-1);
-        attvalue1130.put("Emotion",5);
+        attvalue1130.put("Emotion","5");
 
         attvalue1131.put("AttitudeID",1131);
         attvalue1131.put("AttitudeWord","ถอน");
         attvalue1131.put("AttitudeRank",-1);
-        attvalue1131.put("Emotion",8);
+        attvalue1131.put("Emotion","8");
 
         attvalue1132.put("AttitudeID",1132);
         attvalue1132.put("AttitudeWord","ถีบ");
         attvalue1132.put("AttitudeRank",-1);
-        attvalue1132.put("Emotion",5);
+        attvalue1132.put("Emotion","5");
 
         attvalue1133.put("AttitudeID",1133);
         attvalue1133.put("AttitudeWord","ถึงฆาต");
         attvalue1133.put("AttitudeRank",-1);
-        attvalue1133.put("Emotion",15);
+        attvalue1133.put("Emotion","15");
 
         attvalue1134.put("AttitudeID",1134);
         attvalue1134.put("AttitudeWord","ท่วม");
-                attvalue1134.put("AttitudeRank",-1);
-        attvalue1134.put("Emotion",01);
+        attvalue1134.put("AttitudeRank",-1);
+        attvalue1134.put("Emotion","01");
 
         attvalue1135.put("AttitudeID",1135);
         attvalue1135.put("AttitudeWord","ทุบ");
         attvalue1135.put("AttitudeRank",-1);
-        attvalue1135.put("Emotion",5);
+        attvalue1135.put("Emotion","5");
 
         attvalue1136.put("AttitudeID",1136);
         attvalue1136.put("AttitudeWord","ทุบตี");
         attvalue1136.put("AttitudeRank",-1);
-        attvalue1136.put("Emotion",5);
+        attvalue1136.put("Emotion","5");
 
         attvalue1137.put("AttitudeID",1137);
         attvalue1137.put("AttitudeWord","เท");
         attvalue1137.put("AttitudeRank",-1);
-        attvalue1137.put("Emotion",8);
+        attvalue1137.put("Emotion","8");
 
         attvalue1138.put("AttitudeID",1138);
         attvalue1138.put("AttitudeWord","เท็จ");
         attvalue1138.put("AttitudeRank",-1);
-        attvalue1138.put("Emotion",8);
+        attvalue1138.put("Emotion","8");
 
         attvalue1139.put("AttitudeID",1139);
         attvalue1139.put("AttitudeWord","แทง");
         attvalue1139.put("AttitudeRank",-1);
-        attvalue1139.put("Emotion",05);
+        attvalue1139.put("Emotion","05");
 
         attvalue1140.put("AttitudeID",1140);
         attvalue1140.put("AttitudeWord","น้อย");
         attvalue1140.put("AttitudeRank",-1);
-        attvalue1140.put("Emotion",0);
+        attvalue1140.put("Emotion","0");
 
         attvalue1141.put("AttitudeID",1141);
         attvalue1141.put("AttitudeWord","เนรคุณ");
         attvalue1141.put("AttitudeRank",-1);
-        attvalue1141.put("Emotion",45);
+        attvalue1141.put("Emotion","45");
 
         attvalue1142.put("AttitudeID",1142);
         attvalue1142.put("AttitudeWord","บกพร่อง");
         attvalue1142.put("AttitudeRank",-1);
-        attvalue1142.put("Emotion",8);
+        attvalue1142.put("Emotion","8");
 
         attvalue1143.put("AttitudeID",1143);
         attvalue1143.put("AttitudeWord","บานปลาย");
         attvalue1143.put("AttitudeRank",-1);
-        attvalue1143.put("Emotion",8);
+        attvalue1143.put("Emotion","8");
 
         attvalue1144.put("AttitudeID",1144);
         attvalue1144.put("AttitudeWord","บิดเบือน");
         attvalue1144.put("AttitudeRank",-1);
-        attvalue1144.put("Emotion",8);
+        attvalue1144.put("Emotion","8");
 
         attvalue1145.put("AttitudeID",1145);
         attvalue1145.put("AttitudeWord","โบ้ย");
         attvalue1145.put("AttitudeRank",-1);
-        attvalue1145.put("Emotion",8);
+        attvalue1145.put("Emotion","8");
 
         attvalue1146.put("AttitudeID",1146);
         attvalue1146.put("AttitudeWord","ปฏิเสธ");
         attvalue1146.put("AttitudeRank",-1);
-        attvalue1146.put("Emotion",8);
+        attvalue1146.put("Emotion","8");
 
         attvalue1147.put("AttitudeID",1147);
         attvalue1147.put("AttitudeWord","ปด");
         attvalue1147.put("AttitudeRank",-1);
-        attvalue1147.put("Emotion",8);
+        attvalue1147.put("Emotion","8");
 
         attvalue1148.put("AttitudeID",1148);
         attvalue1148.put("AttitudeWord","ประจาร");
         attvalue1148.put("AttitudeRank",-1);
-        attvalue1148.put("Emotion",4);
+        attvalue1148.put("Emotion","4");
 
         attvalue1149.put("AttitudeID",1149);
         attvalue1149.put("AttitudeWord","ประท้วง");
         attvalue1149.put("AttitudeRank",-1);
-        attvalue1149.put("Emotion",8);
+        attvalue1149.put("Emotion","8");
 
         attvalue1150.put("AttitudeID",1150);
         attvalue1150.put("AttitudeWord","ปล้น");
         attvalue1150.put("AttitudeRank",-1);
-        attvalue1150.put("Emotion",0145);
+        attvalue1150.put("Emotion","0145");
 
         attvalue1151.put("AttitudeID",1151);
         attvalue1151.put("AttitudeWord","ปากเสีย");
         attvalue1151.put("AttitudeRank",-1);
-        attvalue1151.put("Emotion",45);
+        attvalue1151.put("Emotion","45");
 
         attvalue1152.put("AttitudeID",1152);
         attvalue1152.put("AttitudeWord","ปากหมา");
         attvalue1152.put("AttitudeRank",-1);
-        attvalue1152.put("Emotion",45);
+        attvalue1152.put("Emotion","45");
 
         attvalue1153.put("AttitudeID",1153);
         attvalue1153.put("AttitudeWord","เปล่าเปลี่ยว");
         attvalue1153.put("AttitudeRank",-1);
-        attvalue1153.put("Emotion",01);
+        attvalue1153.put("Emotion","01");
 
         attvalue1154.put("AttitudeID",1154);
         attvalue1154.put("AttitudeWord","เปลือง");
         attvalue1154.put("AttitudeRank",-1);
-        attvalue1154.put("Emotion",8);
+        attvalue1154.put("Emotion","8");
 
         attvalue1155.put("AttitudeID",1155);
         attvalue1155.put("AttitudeWord","เปื่อย");
         attvalue1155.put("AttitudeRank",-1);
-        attvalue1155.put("Emotion",8);
+        attvalue1155.put("Emotion","8");
 
         attvalue1156.put("AttitudeID",1156);
         attvalue1156.put("AttitudeWord","ผิดหวัง");
         attvalue1156.put("AttitudeRank",-1);
-        attvalue1156.put("Emotion",0);
+        attvalue1156.put("Emotion","0");
 
         attvalue1157.put("AttitudeID",1157);
         attvalue1157.put("AttitudeWord","พ่อง");
         attvalue1157.put("AttitudeRank",-1);
-        attvalue1157.put("Emotion",5);
+        attvalue1157.put("Emotion","5");
 
         attvalue1158.put("AttitudeID",1158);
         attvalue1158.put("AttitudeWord","พ่อมึง");
         attvalue1158.put("AttitudeRank",-1);
-        attvalue1158.put("Emotion",5);
+        attvalue1158.put("Emotion","5");
 
         attvalue1159.put("AttitudeID",1159);
         attvalue1159.put("AttitudeWord","พ่อมึงตาย");
         attvalue1159.put("AttitudeRank",-1);
-        attvalue1159.put("Emotion",5);
+        attvalue1159.put("Emotion","5");
 
         attvalue1160.put("AttitudeID",1160);
         attvalue1160.put("AttitudeWord","พิการ");
         attvalue1160.put("AttitudeRank",-1);
-        attvalue1160.put("Emotion",0);
+        attvalue1160.put("Emotion","0");
 
         attvalue1161.put("AttitudeID",1161);
         attvalue1161.put("AttitudeWord","ฟวย");
         attvalue1161.put("AttitudeRank",-1);
-        attvalue1161.put("Emotion",8);
+        attvalue1161.put("Emotion","8");
 
         attvalue1162.put("AttitudeID",1162);
         attvalue1162.put("AttitudeWord","ฟาย");
         attvalue1162.put("AttitudeRank",-1);
-        attvalue1162.put("Emotion",8);
+        attvalue1162.put("Emotion","8");
 
         attvalue1163.put("AttitudeID",1163);
         attvalue1163.put("AttitudeWord","มัวหมอง");
         attvalue1163.put("AttitudeRank",-1);
-        attvalue1163.put("Emotion",0);
+        attvalue1163.put("Emotion","0");
 
         attvalue1164.put("AttitudeID",1164);
         attvalue1164.put("AttitudeWord","แม่ง");
         attvalue1164.put("AttitudeRank",-1);
-        attvalue1164.put("Emotion",5);
+        attvalue1164.put("Emotion","5");
 
         attvalue1165.put("AttitudeID",1165);
         attvalue1165.put("AttitudeWord","แมงดา");
         attvalue1165.put("AttitudeRank",-1);
-        attvalue1165.put("Emotion",4);
+        attvalue1165.put("Emotion","4");
 
         attvalue1166.put("AttitudeID",1166);
         attvalue1166.put("AttitudeWord","แม่มึง");
         attvalue1166.put("AttitudeRank",-1);
-        attvalue1166.put("Emotion",5);
+        attvalue1166.put("Emotion","5");
 
         attvalue1167.put("AttitudeID",1167);
         attvalue1167.put("AttitudeWord","แม่มึงตาย");
         attvalue1167.put("AttitudeRank",-1);
-        attvalue1167.put("Emotion",5);
+        attvalue1167.put("Emotion","5");
 
         attvalue1168.put("AttitudeID",1168);
         attvalue1168.put("AttitudeWord","ยุ่งเหยิง");
         attvalue1168.put("AttitudeRank",-1);
-        attvalue1168.put("Emotion",8);
+        attvalue1168.put("Emotion","8");
 
         attvalue1169.put("AttitudeID",1169);
         attvalue1169.put("AttitudeWord","เย็ด");
         attvalue1169.put("AttitudeRank",-1);
-        attvalue1169.put("Emotion",8);
+        attvalue1169.put("Emotion","8");
 
         attvalue1170.put("AttitudeID",1170);
         attvalue1170.put("AttitudeWord","เยี่ยว");
         attvalue1170.put("AttitudeRank",-1);
-        attvalue1170.put("Emotion",8);
+        attvalue1170.put("Emotion","8");
 
         attvalue1171.put("AttitudeID",1171);
         attvalue1171.put("AttitudeWord","ร้องไห้");
         attvalue1171.put("AttitudeRank",-1);
-        attvalue1171.put("Emotion",01);
+        attvalue1171.put("Emotion","01");
 
         attvalue1172.put("AttitudeID",1172);
         attvalue1172.put("AttitudeWord","ระยำ");
         attvalue1172.put("AttitudeRank",-1);
-        attvalue1172.put("Emotion",5);
+        attvalue1172.put("Emotion","5");
 
         attvalue1173.put("AttitudeID",1173);
         attvalue1173.put("AttitudeWord","รุ่ยร่าย");
         attvalue1173.put("AttitudeRank",-1);
-        attvalue1173.put("Emotion",8);
+        attvalue1173.put("Emotion","8");
 
         attvalue1174.put("AttitudeID",1174);
         attvalue1174.put("AttitudeWord","ลบ");
         attvalue1174.put("AttitudeRank",-1);
-        attvalue1174.put("Emotion",8);
+        attvalue1174.put("Emotion","8");
 
         attvalue1175.put("AttitudeID",1175);
         attvalue1175.put("AttitudeWord","ล้ม");
         attvalue1175.put("AttitudeRank",-1);
-        attvalue1175.put("Emotion",0);
+        attvalue1175.put("Emotion","0");
 
         attvalue1176.put("AttitudeID",1176);
         attvalue1176.put("AttitudeWord","ลัก");
         attvalue1176.put("AttitudeRank",-1);
-        attvalue1176.put("Emotion",05);
+        attvalue1176.put("Emotion","05");
 
         attvalue1177.put("AttitudeID",1177);
         attvalue1177.put("AttitudeWord","ลืม");
         attvalue1177.put("AttitudeRank",-1);
-        attvalue1177.put("Emotion",8);
+        attvalue1177.put("Emotion","8");
 
         attvalue1178.put("AttitudeID",1178);
         attvalue1178.put("AttitudeWord","โลเล");
         attvalue1178.put("AttitudeRank",-1);
-        attvalue1178.put("Emotion",8);
+        attvalue1178.put("Emotion","8");
 
         attvalue1179.put("AttitudeID",1179);
         attvalue1179.put("AttitudeWord","ว่ายาก");
         attvalue1179.put("AttitudeRank",-1);
-        attvalue1179.put("Emotion",8);
+        attvalue1179.put("Emotion","8");
 
         attvalue1180.put("AttitudeID",1180);
         attvalue1180.put("AttitudeWord","วิปโยค");
         attvalue1180.put("AttitudeRank",-1);
-        attvalue1180.put("Emotion",8);
+        attvalue1180.put("Emotion","8");
 
         attvalue1181.put("AttitudeID",1181);
         attvalue1181.put("AttitudeWord","วิประโยค");
         attvalue1181.put("AttitudeRank",-1);
-        attvalue1181.put("Emotion",8);
+        attvalue1181.put("Emotion","8");
 
         attvalue1182.put("AttitudeID",1182);
         attvalue1182.put("AttitudeWord","สถุน");
         attvalue1182.put("AttitudeRank",-1);
-        attvalue1182.put("Emotion",45);
+        attvalue1182.put("Emotion","45");
 
         attvalue1183.put("AttitudeID",1183);
         attvalue1183.put("AttitudeWord","สถุล");
         attvalue1183.put("AttitudeRank",-1);
-        attvalue1183.put("Emotion",45);
+        attvalue1183.put("Emotion","45");
 
         attvalue1184.put("AttitudeID",1184);
         attvalue1184.put("AttitudeWord","ส้นตีน");
         attvalue1184.put("AttitudeRank",-1);
-        attvalue1184.put("Emotion",5);
+        attvalue1184.put("Emotion","5");
 
         attvalue1185.put("AttitudeID",1185);
         attvalue1185.put("AttitudeWord","สลัว");
         attvalue1185.put("AttitudeRank",-1);
-        attvalue1185.put("Emotion",1);
+        attvalue1185.put("Emotion","1");
 
         attvalue1186.put("AttitudeID",1186);
         attvalue1186.put("AttitudeWord","สะเหล่อ");
         attvalue1186.put("AttitudeRank",-1);
-        attvalue1186.put("Emotion",45);
+        attvalue1186.put("Emotion","45");
 
         attvalue1187.put("AttitudeID",1187);
         attvalue1187.put("AttitudeWord","สัด");
         attvalue1187.put("AttitudeRank",-1);
-        attvalue1187.put("Emotion",5);
+        attvalue1187.put("Emotion","5");
 
         attvalue1188.put("AttitudeID",1188);
         attvalue1188.put("AttitudeWord","สันดาน");
         attvalue1188.put("AttitudeRank",-1);
-        attvalue1188.put("Emotion",5);
+        attvalue1188.put("Emotion","5");
 
         attvalue1189.put("AttitudeID",1189);
         attvalue1189.put("AttitudeWord","สับปลับ");
         attvalue1189.put("AttitudeRank",-1);
-        attvalue1189.put("Emotion",8);
+        attvalue1189.put("Emotion","8");
 
         attvalue1190.put("AttitudeID",1190);
         attvalue1190.put("AttitudeWord","สัส");
         attvalue1190.put("AttitudeRank",-1);
-        attvalue1190.put("Emotion",5);
+        attvalue1190.put("Emotion","5");
 
         attvalue1191.put("AttitudeID",1191);
         attvalue1191.put("AttitudeWord","สาด");
         attvalue1191.put("AttitudeRank",-1);
-        attvalue1191.put("Emotion",5);
+        attvalue1191.put("Emotion","5");
 
         attvalue1192.put("AttitudeID",1192);
         attvalue1192.put("AttitudeWord","สิ้นสติ");
         attvalue1192.put("AttitudeRank",-1);
-        attvalue1192.put("Emotion",8);
+        attvalue1192.put("Emotion","8");
 
         attvalue1193.put("AttitudeID",1193);
         attvalue1193.put("AttitudeWord","สูญ");
         attvalue1193.put("AttitudeRank",-1);
-        attvalue1193.put("Emotion",0);
+        attvalue1193.put("Emotion","0");
 
         attvalue1194.put("AttitudeID",1194);
         attvalue1194.put("AttitudeWord","เสีย");
         attvalue1194.put("AttitudeRank",-1);
-        attvalue1194.put("Emotion",0);
+        attvalue1194.put("Emotion","0");
 
         attvalue1195.put("AttitudeID",1195);
         attvalue1195.put("AttitudeWord","เสือก");
         attvalue1195.put("AttitudeRank",-1);
-        attvalue1195.put("Emotion",45);
+        attvalue1195.put("Emotion","45");
 
         attvalue1196.put("AttitudeID",1196);
         attvalue1196.put("AttitudeWord","เสื่อมโทรม");
         attvalue1196.put("AttitudeRank",-1);
-        attvalue1196.put("Emotion",8);
+        attvalue1196.put("Emotion","8");
 
         attvalue1197.put("AttitudeID",1197);
         attvalue1197.put("AttitudeWord","เสื่อมเสีย");
         attvalue1197.put("AttitudeRank",-1);
-        attvalue1197.put("Emotion",0145);
+        attvalue1197.put("Emotion","0145");
 
         attvalue1198.put("AttitudeID",1198);
         attvalue1198.put("AttitudeWord","โสมม");
         attvalue1198.put("AttitudeRank",-1);
-        attvalue1198.put("Emotion",4);
+        attvalue1198.put("Emotion","4");
 
         attvalue1199.put("AttitudeID",1199);
         attvalue1199.put("AttitudeWord","หงุดหงิด");
         attvalue1199.put("AttitudeRank",-1);
-        attvalue1199.put("Emotion",5);
+        attvalue1199.put("Emotion","5");
 
         attvalue1200.put("AttitudeID",1200);
         attvalue1200.put("AttitudeWord","หน้าด้าน");
         attvalue1200.put("AttitudeRank",-1);
-        attvalue1200.put("Emotion",45);
+        attvalue1200.put("Emotion","45");
 
         attvalue1201.put("AttitudeID",1201);
         attvalue1201.put("AttitudeWord","หน้าตัวเมีย");
         attvalue1201.put("AttitudeRank",-1);
-        attvalue1201.put("Emotion",45);
+        attvalue1201.put("Emotion","45");
 
         attvalue1202.put("AttitudeID",1202);
         attvalue1202.put("AttitudeWord","หมองมัว");
         attvalue1202.put("AttitudeRank",-1);
-        attvalue1202.put("Emotion",0);
+        attvalue1202.put("Emotion","0");
 
         attvalue1203.put("AttitudeID",1203);
         attvalue1203.put("AttitudeWord","หรี่");
         attvalue1203.put("AttitudeRank",-1);
-        attvalue1203.put("Emotion",8);
+        attvalue1203.put("Emotion","8");
 
         attvalue1204.put("AttitudeID",1204);
         attvalue1204.put("AttitudeWord","หัวร้อน");
         attvalue1204.put("AttitudeRank",-1);
-        attvalue1204.put("Emotion",5);
+        attvalue1204.put("Emotion","5");
 
         attvalue1205.put("AttitudeID",1205);
         attvalue1205.put("AttitudeWord","หี");
         attvalue1205.put("AttitudeRank",-1);
-        attvalue1205.put("Emotion",8);
+        attvalue1205.put("Emotion","8");
 
         attvalue1206.put("AttitudeID",1206);
         attvalue1206.put("AttitudeWord","เหม็น");
         attvalue1206.put("AttitudeRank",-1);
-        attvalue1206.put("Emotion",4);
+        attvalue1206.put("Emotion","4");
 
         attvalue1207.put("AttitudeID",1207);
         attvalue1207.put("AttitudeWord","เหี้ย");
         attvalue1207.put("AttitudeRank",-1);
-        attvalue1207.put("Emotion",5);
+        attvalue1207.put("Emotion","5");
 
         attvalue1208.put("AttitudeID",1208);
         attvalue1208.put("AttitudeWord","เหียก");
         attvalue1208.put("AttitudeRank",-1);
-        attvalue1208.put("Emotion",4);
+        attvalue1208.put("Emotion","4");
 
         attvalue1209.put("AttitudeID",1209);
         attvalue1209.put("AttitudeWord","อกตัญญู");
         attvalue1209.put("AttitudeRank",-1);
-        attvalue1209.put("Emotion",04);
+        attvalue1209.put("Emotion","04");
 
         attvalue1210.put("AttitudeID",1210);
         attvalue1210.put("AttitudeWord","อกแตก");
         attvalue1210.put("AttitudeRank",-1);
-        attvalue1210.put("Emotion",5);
+        attvalue1210.put("Emotion","5");
 
         attvalue1211.put("AttitudeID",1211);
         attvalue1211.put("AttitudeWord","อ้วน");
         attvalue1211.put("AttitudeRank",-1);
-        attvalue1211.put("Emotion",8);
+        attvalue1211.put("Emotion","8");
 
         attvalue1212.put("AttitudeID",1212);
         attvalue1212.put("AttitudeWord","อัปปรี");
         attvalue1212.put("AttitudeRank",-1);
-        attvalue1212.put("Emotion",45);
+        attvalue1212.put("Emotion","45");
 
         attvalue1213.put("AttitudeID",1213);
         attvalue1213.put("AttitudeWord","อัปปรีย์");
         attvalue1213.put("AttitudeRank",-1);
-        attvalue1213.put("Emotion",45);
+        attvalue1213.put("Emotion","45");
 
         attvalue1214.put("AttitudeID",1214);
         attvalue1214.put("AttitudeWord","อื้อฉาว");
         attvalue1214.put("AttitudeRank",-1);
-        attvalue1214.put("Emotion",5);
+        attvalue1214.put("Emotion","5");
 
         attvalue1215.put("AttitudeID",1215);
         attvalue1215.put("AttitudeWord","อุบาด");
         attvalue1215.put("AttitudeRank",-1);
-        attvalue1215.put("Emotion",4);
+        attvalue1215.put("Emotion","4");
 
         attvalue1216.put("AttitudeID",1216);
         attvalue1216.put("AttitudeWord","อุบาท");
         attvalue1216.put("AttitudeRank",-1);
-        attvalue1216.put("Emotion",4);
+        attvalue1216.put("Emotion","4");
 
         attvalue1217.put("AttitudeID",1217);
         attvalue1217.put("AttitudeWord","อุบาทว์");
         attvalue1217.put("AttitudeRank",-1);
-        attvalue1217.put("Emotion",4);
+        attvalue1217.put("Emotion","4");
 
         attvalue1218.put("AttitudeID",1218);
         attvalue1218.put("AttitudeWord","เฮี้ย");
         attvalue1218.put("AttitudeRank",-1);
-        attvalue1218.put("Emotion",5);
+        attvalue1218.put("Emotion","5");
 
         attvalue1219.put("AttitudeID",1219);
         attvalue1219.put("AttitudeWord","ดูแล");
         attvalue1219.put("AttitudeRank",1);
-        attvalue1219.put("Emotion",8);
+        attvalue1219.put("Emotion","8");
 
         attvalue1220.put("AttitudeID",1220);
         attvalue1220.put("AttitudeWord","อุ้มชู");
         attvalue1220.put("AttitudeRank",1);
-        attvalue1220.put("Emotion",8);
+        attvalue1220.put("Emotion","8");
 
         attvalue1221.put("AttitudeID",1221);
         attvalue1221.put("AttitudeWord","กอด");
         attvalue1221.put("AttitudeRank",1);
-        attvalue1221.put("Emotion",27);
+        attvalue1221.put("Emotion","27");
 
         attvalue1222.put("AttitudeID",1222);
         attvalue1222.put("AttitudeWord","การันตี");
         attvalue1222.put("AttitudeRank",1);
-        attvalue1222.put("Emotion",2);
+        attvalue1222.put("Emotion","2");
 
         attvalue1223.put("AttitudeID",1223);
         attvalue1223.put("AttitudeWord","ก้าว");
         attvalue1223.put("AttitudeRank",1);
-        attvalue1223.put("Emotion",8);
+        attvalue1223.put("Emotion","8");
 
         attvalue1224.put("AttitudeID",1224);
         attvalue1224.put("AttitudeWord","ช่วย");
         attvalue1224.put("AttitudeRank",1);
-        attvalue1224.put("Emotion",2);
+        attvalue1224.put("Emotion","2");
 
         attvalue1225.put("AttitudeID",1225);
         attvalue1225.put("AttitudeWord","อนุมัติ");
         attvalue1225.put("AttitudeRank",1);
-        attvalue1225.put("Emotion",2);
+        attvalue1225.put("Emotion","2");
 
         attvalue1226.put("AttitudeID",1226);
         attvalue1226.put("AttitudeWord","กตเวที");
         attvalue1226.put("AttitudeRank",1);
-        attvalue1226.put("Emotion",8);
+        attvalue1226.put("Emotion","8");
 
         attvalue1227.put("AttitudeID",1227);
         attvalue1227.put("AttitudeWord","กรุณา");
         attvalue1227.put("AttitudeRank",1);
-        attvalue1227.put("Emotion",8);
+        attvalue1227.put("Emotion","8");
 
         attvalue1228.put("AttitudeID",1228);
         attvalue1228.put("AttitudeWord","กันเอง");
         attvalue1228.put("AttitudeRank",1);
-        attvalue1228.put("Emotion",8);
+        attvalue1228.put("Emotion","8");
 
         attvalue1229.put("AttitudeID",1229);
         attvalue1229.put("AttitudeWord","แข็งขัน");
         attvalue1229.put("AttitudeRank",1);
-        attvalue1229.put("Emotion",8);
+        attvalue1229.put("Emotion","8");
 
         attvalue1230.put("AttitudeID",1230);
         attvalue1230.put("AttitudeWord","ปรองดอง");
         attvalue1230.put("AttitudeRank",1);
-        attvalue1230.put("Emotion",8);
+        attvalue1230.put("Emotion","8");
 
         attvalue1231.put("AttitudeID",1231);
         attvalue1231.put("AttitudeWord","ครื้นครึก");
         attvalue1231.put("AttitudeRank",1);
-        attvalue1231.put("Emotion",7);
+        attvalue1231.put("Emotion","7");
 
         attvalue1232.put("AttitudeID",1232);
         attvalue1232.put("AttitudeWord","ครึกครื้น");
         attvalue1232.put("AttitudeRank",1);
-        attvalue1232.put("Emotion",7);
+        attvalue1232.put("Emotion","7");
 
         attvalue1233.put("AttitudeID",1233);
         attvalue1233.put("AttitudeWord","ชุ่มชื้น");
         attvalue1233.put("AttitudeRank",1);
-        attvalue1233.put("Emotion",7);
+        attvalue1233.put("Emotion","7");
 
         attvalue1234.put("AttitudeID",1234);
         attvalue1234.put("AttitudeWord","หวาน");
         attvalue1234.put("AttitudeRank",1);
-        attvalue1234.put("Emotion",7);
+        attvalue1234.put("Emotion","7");
 
         attvalue1235.put("AttitudeID",1235);
         attvalue1235.put("AttitudeWord","รื่นรมย์");
         attvalue1235.put("AttitudeRank",1);
-        attvalue1235.put("Emotion",7);
+        attvalue1235.put("Emotion","7");
 
         attvalue1236.put("AttitudeID",1236);
         attvalue1236.put("AttitudeWord","เชี่ยวชาญ");
         attvalue1236.put("AttitudeRank",1);
-        attvalue1236.put("Emotion",8);
+        attvalue1236.put("Emotion","8");
 
         attvalue1237.put("AttitudeID",1237);
         attvalue1237.put("AttitudeWord","แถม");
         attvalue1237.put("AttitudeRank",1);
-        attvalue1237.put("Emotion",8);
+        attvalue1237.put("Emotion","8");
 
         attvalue1238.put("AttitudeID",1238);
         attvalue1238.put("AttitudeWord","แท้");
         attvalue1238.put("AttitudeRank",1);
-        attvalue1238.put("Emotion",8);
+        attvalue1238.put("Emotion","8");
 
         attvalue1239.put("AttitudeID",1239);
         attvalue1239.put("AttitudeWord","นวล");
         attvalue1239.put("AttitudeRank",1);
-        attvalue1239.put("Emotion",8);
+        attvalue1239.put("Emotion","8");
 
         attvalue1240.put("AttitudeID",1240);
         attvalue1240.put("AttitudeWord","ขอบใจ");
         attvalue1240.put("AttitudeRank",1);
-        attvalue1240.put("Emotion",7);
+        attvalue1240.put("Emotion","7");
 
         attvalue1241.put("AttitudeID",1241);
         attvalue1241.put("AttitudeWord","แน่");
         attvalue1241.put("AttitudeRank",1);
-        attvalue1241.put("Emotion",27);
+        attvalue1241.put("Emotion","27");
 
         attvalue1242.put("AttitudeID",1242);
         attvalue1242.put("AttitudeWord","แน่ชัด");
         attvalue1242.put("AttitudeRank",1);
-        attvalue1242.put("Emotion",8);
+        attvalue1242.put("Emotion","8");
 
         attvalue1243.put("AttitudeID",1243);
         attvalue1243.put("AttitudeWord","บริบูรณ์");
         attvalue1243.put("AttitudeRank",1);
-        attvalue1243.put("Emotion",8);
+        attvalue1243.put("Emotion","8");
 
         attvalue1244.put("AttitudeID",1244);
         attvalue1244.put("AttitudeWord","บวก");
         attvalue1244.put("AttitudeRank",1);
-        attvalue1244.put("Emotion",8);
+        attvalue1244.put("Emotion","8");
 
         attvalue1245.put("AttitudeID",1245);
         attvalue1245.put("AttitudeWord","เบิกบาน");
         attvalue1245.put("AttitudeRank",1);
-        attvalue1245.put("Emotion",7);
+        attvalue1245.put("Emotion","7");
 
         attvalue1246.put("AttitudeID",1246);
         attvalue1246.put("AttitudeWord","ปราดเปรียว");
         attvalue1246.put("AttitudeRank",1);
-        attvalue1246.put("Emotion",8);
+        attvalue1246.put("Emotion","8");
 
         attvalue1247.put("AttitudeID",1247);
         attvalue1247.put("AttitudeWord","ประหยัด");
         attvalue1247.put("AttitudeRank",1);
-        attvalue1247.put("Emotion",8);
+        attvalue1247.put("Emotion","8");
 
         attvalue1248.put("AttitudeID",1248);
         attvalue1248.put("AttitudeWord","เคารพ");
         attvalue1248.put("AttitudeRank",1);
-        attvalue1248.put("Emotion",8);
+        attvalue1248.put("Emotion","8");
 
         attvalue1249.put("AttitudeID",1249);
         attvalue1249.put("AttitudeWord","รักษา");
         attvalue1249.put("AttitudeRank",1);
-        attvalue1249.put("Emotion",2);
+        attvalue1249.put("Emotion","2");
 
         attvalue1250.put("AttitudeID",1250);
         attvalue1250.put("AttitudeWord","สรรเสริญ");
         attvalue1250.put("AttitudeRank",1);
-        attvalue1250.put("Emotion",7);
+        attvalue1250.put("Emotion","7");
 
         attvalue1251.put("AttitudeID",1251);
         attvalue1251.put("AttitudeWord","บำรุง");
         attvalue1251.put("AttitudeRank",1);
-        attvalue1251.put("Emotion",8);
+        attvalue1251.put("Emotion","8");
 
         attvalue1252.put("AttitudeID",1252);
         attvalue1252.put("AttitudeWord","เชื่อฟัง");
         attvalue1252.put("AttitudeRank",1);
-        attvalue1252.put("Emotion",2);
+        attvalue1252.put("Emotion","2");
 
         attvalue1253.put("AttitudeID",1253);
         attvalue1253.put("AttitudeWord","ยิ้ม");
         attvalue1253.put("AttitudeRank",1);
-        attvalue1253.put("Emotion",7);
+        attvalue1253.put("Emotion","7");
 
         attvalue1254.put("AttitudeID",1254);
         attvalue1254.put("AttitudeWord","นมัสการ");
         attvalue1254.put("AttitudeRank",1);
-        attvalue1254.put("Emotion",8);
+        attvalue1254.put("Emotion","8");
 
         attvalue1255.put("AttitudeID",1255);
         attvalue1255.put("AttitudeWord","จริง");
         attvalue1255.put("AttitudeRank",1);
-        attvalue1255.put("Emotion",2);
+        attvalue1255.put("Emotion","2");
 
         attvalue1256.put("AttitudeID",1256);
         attvalue1256.put("AttitudeWord","แน่แน่ว");
         attvalue1256.put("AttitudeRank",1);
-        attvalue1256.put("Emotion",2);
+        attvalue1256.put("Emotion","2");
 
         attvalue1257.put("AttitudeID",1257);
         attvalue1257.put("AttitudeWord","มงคล");
         attvalue1257.put("AttitudeRank",1);
-        attvalue1257.put("Emotion",7);
+        attvalue1257.put("Emotion","7");
 
         attvalue1258.put("AttitudeID",1258);
         attvalue1258.put("AttitudeWord","แน่วแน่");
         attvalue1258.put("AttitudeRank",1);
-        attvalue1258.put("Emotion",2);
+        attvalue1258.put("Emotion","2");
 
         attvalue1259.put("AttitudeID",1259);
         attvalue1259.put("AttitudeWord","ปลั่ง");
         attvalue1259.put("AttitudeRank",1);
-        attvalue1259.put("Emotion",8);
+        attvalue1259.put("Emotion","8");
 
         attvalue1260.put("AttitudeID",1260);
         attvalue1260.put("AttitudeWord","แปล้");
         attvalue1260.put("AttitudeRank",1);
-        attvalue1260.put("Emotion",8);
+        attvalue1260.put("Emotion","8");
 
         attvalue1261.put("AttitudeID",1261);
         attvalue1261.put("AttitudeWord","อดออม");
         attvalue1261.put("AttitudeRank",1);
-        attvalue1261.put("Emotion",8);
+        attvalue1261.put("Emotion","8");
 
         attvalue1262.put("AttitudeID",1262);
         attvalue1262.put("AttitudeWord","อนุโมทนา");
         attvalue1262.put("AttitudeRank",1);
-        attvalue1262.put("Emotion",8);
+        attvalue1262.put("Emotion","8");
 
         attvalue1263.put("AttitudeID",1263);
         attvalue1263.put("AttitudeWord","คุ้มครอง");
         attvalue1263.put("AttitudeRank",1);
-        attvalue1263.put("Emotion",8);
+        attvalue1263.put("Emotion","8");
 
         attvalue1264.put("AttitudeID",1264);
         attvalue1264.put("AttitudeWord","พิทักษ์");
         attvalue1264.put("AttitudeRank",1);
-        attvalue1264.put("Emotion",8);
+        attvalue1264.put("Emotion","8");
 
         attvalue1265.put("AttitudeID",1265);
         attvalue1265.put("AttitudeWord","มหา");
         attvalue1265.put("AttitudeRank",1);
-        attvalue1265.put("Emotion",8);
+        attvalue1265.put("Emotion","8");
 
         attvalue1266.put("AttitudeID",1266);
         attvalue1266.put("AttitudeWord","มั่งมี");
         attvalue1266.put("AttitudeRank",1);
-        attvalue1266.put("Emotion",7);
+        attvalue1266.put("Emotion","7");
 
         attvalue1267.put("AttitudeID",1267);
         attvalue1267.put("AttitudeWord","ปลอดภัย");
         attvalue1267.put("AttitudeRank",1);
-        attvalue1267.put("Emotion",2);
+        attvalue1267.put("Emotion","2");
 
         attvalue1268.put("AttitudeID",1268);
         attvalue1268.put("AttitudeWord","ทำบุญ");
         attvalue1268.put("AttitudeRank",1);
-        attvalue1268.put("Emotion",8);
+        attvalue1268.put("Emotion","8");
 
         attvalue1269.put("AttitudeID",1269);
         attvalue1269.put("AttitudeWord","รุ่ง");
         attvalue1269.put("AttitudeRank",1);
-        attvalue1269.put("Emotion",7);
+        attvalue1269.put("Emotion","7");
 
         attvalue1270.put("AttitudeID",1270);
         attvalue1270.put("AttitudeWord","เร็ว");
         attvalue1270.put("AttitudeRank",1);
-        attvalue1270.put("Emotion",8);
+        attvalue1270.put("Emotion","8");
 
         attvalue1271.put("AttitudeID",1271);
         attvalue1271.put("AttitudeWord","เรือง");
         attvalue1271.put("AttitudeRank",1);
-        attvalue1271.put("Emotion",8);
+        attvalue1271.put("Emotion","8");
 
         attvalue1272.put("AttitudeID",1272);
         attvalue1272.put("AttitudeWord","ล้ำเลิศ");
         attvalue1272.put("AttitudeRank",1);
-        attvalue1272.put("Emotion",27);
+        attvalue1272.put("Emotion","27");
 
         attvalue1273.put("AttitudeID",1273);
         attvalue1273.put("AttitudeWord","ลึกซึ้ง");
         attvalue1273.put("AttitudeRank",1);
-        attvalue1273.put("Emotion",8);
+        attvalue1273.put("Emotion","8");
 
         attvalue1274.put("AttitudeID",1274);
         attvalue1274.put("AttitudeWord","วาว");
         attvalue1274.put("AttitudeRank",1);
-        attvalue1274.put("Emotion",8);
+        attvalue1274.put("Emotion","8");
 
         attvalue1275.put("AttitudeID",1275);
         attvalue1275.put("AttitudeWord","เสถียรภาพ");
         attvalue1275.put("AttitudeRank",1);
-        attvalue1275.put("Emotion",8);
+        attvalue1275.put("Emotion","8");
 
         attvalue1276.put("AttitudeID",1276);
         attvalue1276.put("AttitudeWord","เสริมสร้าง");
         attvalue1276.put("AttitudeRank",1);
-        attvalue1276.put("Emotion",8);
+        attvalue1276.put("Emotion","8");
 
         attvalue1277.put("AttitudeID",1277);
         attvalue1277.put("AttitudeWord","สร้าง");
         attvalue1277.put("AttitudeRank",1);
-        attvalue1277.put("Emotion",8);
+        attvalue1277.put("Emotion","8");
 
         attvalue1278.put("AttitudeID",1278);
         attvalue1278.put("AttitudeWord","เพลิดเพลิน");
         attvalue1278.put("AttitudeRank",1);
-        attvalue1278.put("Emotion",7);
+        attvalue1278.put("Emotion","7");
 
         attvalue1279.put("AttitudeID",1279);
         attvalue1279.put("AttitudeWord","เกียรติ");
         attvalue1279.put("AttitudeRank",1);
-        attvalue1279.put("Emotion",7);
+        attvalue1279.put("Emotion","7");
 
         attvalue1280.put("AttitudeID",1280);
         attvalue1280.put("AttitudeWord","สนิท");
         attvalue1280.put("AttitudeRank",1);
-        attvalue1280.put("Emotion",8);
+        attvalue1280.put("Emotion","8");
 
         attvalue1281.put("AttitudeID",1281);
         attvalue1281.put("AttitudeWord","สร้างสรรค์");
         attvalue1281.put("AttitudeRank",1);
-        attvalue1281.put("Emotion",2);
+        attvalue1281.put("Emotion","2");
 
         attvalue1282.put("AttitudeID",1282);
         attvalue1282.put("AttitudeWord","สำเร็จ");
         attvalue1282.put("AttitudeRank",1);
-        attvalue1282.put("Emotion",7);
+        attvalue1282.put("Emotion","7");
 
         attvalue1283.put("AttitudeID",1283);
         attvalue1283.put("AttitudeWord","เสมอ");
         attvalue1283.put("AttitudeRank",1);
-        attvalue1283.put("Emotion",8);
+        attvalue1283.put("Emotion","8");
 
         attvalue1284.put("AttitudeID",1284);
         attvalue1284.put("AttitudeWord","เหมาะเจาะ");
         attvalue1284.put("AttitudeRank",1);
-        attvalue1284.put("Emotion",2);
+        attvalue1284.put("Emotion","2");
 
         attvalue1285.put("AttitudeID",1285);
         attvalue1285.put("AttitudeWord","เหมาะสม");
         attvalue1285.put("AttitudeRank",1);
-        attvalue1285.put("Emotion",2);
+        attvalue1285.put("Emotion","2");
 
         attvalue1286.put("AttitudeID",1286);
         attvalue1286.put("AttitudeWord","ทุ่มเท");
         attvalue1286.put("AttitudeRank",1);
-        attvalue1286.put("Emotion",8);
+        attvalue1286.put("Emotion","8");
 
         attvalue1287.put("AttitudeID",1287);
         attvalue1287.put("AttitudeWord","โรแมนติก");
         attvalue1287.put("AttitudeRank",1);
-        attvalue1287.put("Emotion",7);
+        attvalue1287.put("Emotion","7");
 
         attvalue1288.put("AttitudeID",1288);
         attvalue1288.put("AttitudeWord","มีชื่อ");
         attvalue1288.put("AttitudeRank",1);
-        attvalue1288.put("Emotion",27);
+        attvalue1288.put("Emotion","27");
 
         attvalue1289.put("AttitudeID",1289);
         attvalue1289.put("AttitudeWord","พร้อม");
         attvalue1289.put("AttitudeRank",1);
-        attvalue1289.put("Emotion",8);
+        attvalue1289.put("Emotion","8");
 
         attvalue1290.put("AttitudeID",1290);
         attvalue1290.put("AttitudeWord","ชอบธรรม");
         attvalue1290.put("AttitudeRank",1);
-        attvalue1290.put("Emotion",8);
+        attvalue1290.put("Emotion","8");
 
         attvalue1291.put("AttitudeID",1291);
         attvalue1291.put("AttitudeWord","เห็นด้วย");
         attvalue1291.put("AttitudeRank",1);
-        attvalue1291.put("Emotion",8);
+        attvalue1291.put("Emotion","8");
 
         attvalue1292.put("AttitudeID",1292);
         attvalue1292.put("AttitudeWord","อ่อนโยน");
         attvalue1292.put("AttitudeRank",1);
-        attvalue1292.put("Emotion",8);
+        attvalue1292.put("Emotion","8");
 
         attvalue1293.put("AttitudeID",1293);
         attvalue1293.put("AttitudeWord","อัศจรรย์");
         attvalue1293.put("AttitudeRank",1);
-        attvalue1293.put("Emotion",7);
+        attvalue1293.put("Emotion","7");
 
         attvalue1294.put("AttitudeID",1294);
         attvalue1294.put("AttitudeWord","ประชาธิปไตย");
         attvalue1294.put("AttitudeRank",1);
-        attvalue1294.put("Emotion",2);
+        attvalue1294.put("Emotion","2");
 
         attvalue1295.put("AttitudeID",1295);
         attvalue1295.put("AttitudeWord","โอชะ");
         attvalue1295.put("AttitudeRank",1);
-        attvalue1295.put("Emotion",7);
+        attvalue1295.put("Emotion","7");
 
         attvalue1296.put("AttitudeID",1296);
         attvalue1296.put("AttitudeWord","เฮง");
         attvalue1296.put("AttitudeRank",1);
-        attvalue1296.put("Emotion",7);
+        attvalue1296.put("Emotion","7");
 
         attvalue1297.put("AttitudeID",1297);
         attvalue1297.put("AttitudeWord","คุณค่า");
         attvalue1297.put("AttitudeRank",1);
-        attvalue1297.put("Emotion",8);
+        attvalue1297.put("Emotion","8");
 
         attvalue1298.put("AttitudeID",1298);
         attvalue1298.put("AttitudeWord","เชื่อมั่น");
         attvalue1298.put("AttitudeRank",1);
-        attvalue1298.put("Emotion",7);
+        attvalue1298.put("Emotion","7");
 
         attvalue1299.put("AttitudeID",1299);
         attvalue1299.put("AttitudeWord","เอาใจใส่");
         attvalue1299.put("AttitudeRank",1);
-        attvalue1299.put("Emotion",7);
+        attvalue1299.put("Emotion","7");
 
         attvalue1300.put("AttitudeID",1300);
         attvalue1300.put("AttitudeWord","เอื้อเฟื้อ");
         attvalue1300.put("AttitudeRank",1);
-        attvalue1300.put("Emotion",27);
-
+        attvalue1300.put("Emotion","27");
 
 
 

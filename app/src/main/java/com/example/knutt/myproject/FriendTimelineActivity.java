@@ -69,17 +69,17 @@ public class FriendTimelineActivity extends AppCompatActivity {
 //
                                     if(story.has("story")){
                                       MessageStory = story.getString("story");
+                                        if(story.has("message")){
+                                            Message = story.getString("message");
 
+
+
+
+
+                                        }
 
                                       }
-                                    if(story.has("message")){
-                                        Message = story.getString("message");
 
-
-
-
-
-                                    }
 
                           addMessage.add("เรื่องราว : "+MessageStory+"\n"+"ข้อความที่โพสต์ : "+Message);
 

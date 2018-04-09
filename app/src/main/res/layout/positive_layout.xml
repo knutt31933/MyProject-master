@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/bgfacebook"
-    >
+    android:layout_width="350dp"
+    android:layout_height="500dp"
+    android:background="@drawable/bgfacebook">
 
 
     <ImageView
@@ -44,10 +42,10 @@
 
     <TextView
         android:id="@+id/textpositiveemo"
-        android:layout_alignLeft="@+id/textpositiveatti"
-
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textpositiveatti"
         android:layout_alignStart="@+id/textpositiveatti"
         android:layout_below="@+id/textpositiveatti"
         android:layout_marginTop="23dp"
@@ -68,9 +66,8 @@
         android:layout_height="50dp"
 
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="49dp"
-        android:layout_toLeftOf="@+id/btnpostsitive"
-        android:layout_toStartOf="@+id/btnpostsitive"
+        android:layout_alignStart="@+id/textpositiveatti"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/butred"
         android:text="No"
         android:textColor="#FFFFFF"
