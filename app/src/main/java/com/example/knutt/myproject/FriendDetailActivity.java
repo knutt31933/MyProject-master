@@ -19,7 +19,14 @@ import android.widget.Toast;
 import com.facebook.login.widget.ProfilePictureView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -29,6 +36,7 @@ private ListView listView;
 private DatabaseForFriends databaseForFriends;
 private ArrayList<String> addName = new ArrayList<>();
 private ArrayList<String> addID= new ArrayList<>();
+private TreeMap<String,String> add = new TreeMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +46,21 @@ private ArrayList<String> addID= new ArrayList<>();
         databaseForFriends = new DatabaseForFriends(getApplicationContext());
         ArrayList<HashMap<String, String>> test = databaseForFriends.getIDFriends();
         for(int i = 0;i<test.size();i++){
-            addID.add(test.get(i).get("FriendsIDFB"));
-            addName.add(test.get(i).get("FriendsNameFB"));
+            add.put(test.get(i).get("FriendsIDFB"),test.get(i).get("FriendsNameFB"));
+
+
         }
+        Map<String, String> sortedMap = sortByValue(add);
+        for (Map.Entry<String, String> entry : sortedMap.entrySet()) {
+            addID.add(entry.getKey());
+            addName.add(entry.getValue());
+
+        }
+
+
+
+
+
 
         listView = (ListView)findViewById(R.id.Listview);
         MyAdapter myAdapter = new MyAdapter(this,addName,addID);
@@ -69,6 +89,31 @@ private ArrayList<String> addID= new ArrayList<>();
 
 
     }
+    private static Map<String, String> sortByValue(Map<String,String> add) {
+
+
+        List<Map.Entry<String, String>> list = new LinkedList<Map.Entry<String, String>>(add.entrySet());
+
+
+        Collections.sort(list, new Comparator<Map.Entry<String, String>>() {
+            public int compare(Map.Entry<String, String> o1,
+                               Map.Entry<String, String> o2) {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+
+        Map<String, String> sortedMap = new LinkedHashMap<String, String>();
+        for (Map.Entry<String, String> entry : list) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+
+
+
+
+        return sortedMap;
+    }
+
 }
 
 class MyAdapter extends ArrayAdapter<String>{
