@@ -1,6 +1,8 @@
 package com.example.knutt.myproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -44,36 +46,44 @@ public class ProfileActivity extends AppCompatActivity {
         profilePictureView = (ProfilePictureView)findViewById(R.id.profileview);
         textname = (TextView)findViewById(R.id.textname);
 
-        final ArrayList<HashMap<String, String>> test = databaseForFriends.getIDFriends();
-        Toast.makeText(ProfileActivity.this,"id = "+String.valueOf(test.size()),Toast.LENGTH_LONG).show();
+        SharedPreferences sp = getSharedPreferences("username", Context.MODE_PRIVATE);
+        String name = sp.getString("username", "");
+
+        SharedPreferences sp2 = getSharedPreferences("userid", Context.MODE_PRIVATE);
+        String id = sp2.getString("userid", "");
+
+        profilePictureView.setProfileId(id);
+        textname.setText(name);
+
+        Toast.makeText(ProfileActivity.this,"id = "+id,Toast.LENGTH_LONG).show();
 
 
-        btnback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+//        btnback.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Intent profile = new Intent(ProfileActivity.this,AccountActivity.class);
+//               profile.putExtra("userProfile",jsondata);
+//               startActivity(profile);
+//
+//            }
+//        });
 
-                Intent profile = new Intent(ProfileActivity.this,AccountActivity.class);
-               profile.putExtra("userProfile",jsondata);
-               startActivity(profile);
-
-            }
-        });
-
-        try {
-
-            reponse = new JSONObject(jsondata);
-            String fname = reponse.get("first_name").toString();
-            String lname = reponse.get("last_name").toString();
-            String idprofile = reponse.get("id").toString();
-            String fullname = fname + " " +lname;
-            //String bh = reponse.get("birthday").toString();
-            textname.setText(fullname);
-
-            profilePictureView.setProfileId(idprofile);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        try {
+//
+//            reponse = new JSONObject(jsondata);
+//            String fname = reponse.get("first_name").toString();
+//            String lname = reponse.get("last_name").toString();
+//            String idprofile = reponse.get("id").toString();
+//            String fullname = fname + " " +lname;
+//            //String bh = reponse.get("birthday").toString();
+//            textname.setText(fullname);
+//
+//            profilePictureView.setProfileId(idprofile);
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
 

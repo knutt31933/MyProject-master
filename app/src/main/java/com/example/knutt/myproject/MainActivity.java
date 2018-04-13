@@ -1,6 +1,8 @@
 package com.example.knutt.myproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -24,6 +26,7 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.security.MessageDigest;
@@ -114,6 +117,23 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("userProfile", json_object.toString());
                 intent.putExtra("Logout",loginResult.getAccessToken());
                 intent.putExtra("id",loginResult.getAccessToken().getUserId());
+
+
+                try {
+                    SharedPreferences sharedPref = getSharedPreferences("userid", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("userid", json_object.get("id").toString());
+                    editor.commit();
+
+                    SharedPreferences sharedPref2 = getSharedPreferences("username", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor2 = sharedPref2.edit();
+                    editor2.putString("username", json_object.get("first_name").toString()+" "+json_object.get("last_name").toString());
+                    editor2.commit();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 startActivity(intent);
             }
         });

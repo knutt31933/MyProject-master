@@ -43,13 +43,47 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SummaryActivity" />
-        <activity android:name=".TimelineActivity" />
-        <activity android:name=".SettingActivity" />
+        <activity android:name=".ProfileActivity"
+            android:parentActivityName=".AccountActivity">
+            <meta-data android:name="android.support.PARENT.ACTIVITY"
+                android:value=".AccountActivity"></meta-data>
+
+        </activity>
+
+        <activity android:name=".SummaryActivity"
+            android:parentActivityName=".AccountActivity">
+        <meta-data android:name="android.support.PARENT.ACTIVITY"
+            android:value=".AccountActivity"></meta-data>
+        </activity>
+        <activity android:name=".TimelineActivity"
+            android:parentActivityName=".AccountActivity">
+            <meta-data android:name="android.support.PARENT.ACTIVITY"
+                android:value=".AccountActivity">
+
+            </meta-data>
+        </activity>
+        <activity android:name=".SettingActivity"
+            android:parentActivityName=".AccountActivity">
+            <meta-data android:name="android.support.PARENT.ACTIVITY"
+                android:value=".AccountActivity">
+
+            </meta-data>
+        </activity>
         <activity android:name=".FriendsActivity" />
-        <activity android:name=".FriendDetailActivity" />
-        <activity android:name=".FriendTimelineActivity"></activity>
+        <activity android:name=".FriendDetailActivity"
+            android:parentActivityName=".AccountActivity">
+            <meta-data android:name="android.support.PARENT.ACTIVITY"
+                android:value=".AccountActivity">
+
+            </meta-data>
+        </activity>
+        <activity android:name=".FriendTimelineActivity"
+            android:parentActivityName=".FriendDetailActivity">
+            <meta-data android:name="android.support.PARENT.ACTIVITY"
+                android:value=".FriendDetailActivity">
+
+            </meta-data>
+    </activity>
     </application>
 
 </manifest>
